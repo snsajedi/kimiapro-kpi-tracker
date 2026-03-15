@@ -38,7 +38,7 @@
       background: linear-gradient(135deg, #0f766e, #115e59);
       color: white;
       border-radius: 0;
-      padding: 10px 14px;
+      padding: 8px 12px;
       box-shadow: none;
       margin-bottom: 10px;
       position: sticky;
@@ -48,12 +48,12 @@
 
     .hero h1 {
       margin: 0;
-      font-size: 1.2rem;
+      font-size: 1.05rem;
     }
 
     .hero p {
       margin: 2px 0 0;
-      font-size: 0.8rem;
+      font-size: 0.72rem;
       color: rgba(255,255,255,0.8);
       line-height: 1.3;
     }
@@ -75,16 +75,16 @@
     }
 
     .brand-mark {
-      width: 40px;
-      height: 40px;
-      border-radius: 16px;
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
       background: linear-gradient(135deg, rgba(255,255,255,0.28), rgba(255,255,255,0.1));
       border: 1px solid rgba(255,255,255,0.22);
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 800;
-      font-size: 1.15rem;
+      font-size: 1rem;
       letter-spacing: 0.03em;
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.15);
     }
@@ -95,7 +95,7 @@
 
     .brand-kicker {
       margin: 0;
-      font-size: 0.8rem;
+      font-size: 0.68rem;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -103,12 +103,12 @@
     }
 
     .version-badge {
-      padding: 6px 10px;
+      padding: 5px 9px;
       border-radius: 999px;
       background: rgba(255,255,255,0.12);
       color: white;
       border: 1px solid rgba(255,255,255,0.2);
-      font-size: 0.84rem;
+      font-size: 0.76rem;
       font-weight: 700;
       white-space: nowrap;
     }
@@ -140,6 +140,14 @@
       display: inline-flex;
       max-width: 100%;
       align-items: center;
+      gap: 6px;
+      padding: 4px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.14);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      align-items: center;
       gap: 8px;
       padding: 6px;
       border-radius: 14px;
@@ -152,14 +160,16 @@
     .tool-btn {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      min-height: 38px;
-      padding: 9px 12px;
+      justify-content: center;
+      gap: 0;
+      min-height: 34px;
+      min-width: 34px;
+      padding: 7px;
       border-radius: 10px;
       border: 1px solid rgba(255,255,255,0.10);
       background: rgba(255,255,255,0.08);
       color: white;
-      font-size: 0.88rem;
+      font-size: 0.82rem;
       font-weight: 700;
       line-height: 1;
     }
@@ -167,6 +177,10 @@
     .tool-btn .tool-icon {
       font-size: 0.95rem;
       opacity: 0.95;
+    }
+
+    .tool-btn span:last-child {
+      display: none;
     }
 
     .tool-btn:hover {
@@ -1254,24 +1268,15 @@
       }
       .toolbar-group {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(5, minmax(0, 1fr));
         width: 100%;
         gap: 8px;
       }
       .tool-btn {
-        min-height: 46px;
+        min-height: 42px;
+        min-width: 0;
         width: 100%;
-        justify-content: center;
-        padding: 10px 8px;
-        font-size: 0.82rem;
-        white-space: normal;
-      }
-      .tool-btn span:last-child {
-        display: inline-block;
-        line-height: 1.1;
-      }
-      .tool-btn.warn-tool {
-        grid-column: 1 / -1;
+        padding: 8px 6px;
       }
       .tool-btn .tool-icon {
         font-size: 0.9rem;
@@ -1362,11 +1367,11 @@
       <p>Simple offline browser tool for tracking costs, hours, and project performance in real-world engineering and operations projects.</p>
       <div class="toolbar">
         <div class="toolbar-group" role="toolbar" aria-label="Main tools">
-          <button class="tool-btn primary-tool" id="printBtn"><span class="tool-icon">🖨</span><span>Print</span></button>
-          <button class="tool-btn" id="downloadReportBtn"><span class="tool-icon">⬇</span><span>PDF Report</span></button>
-          <button class="tool-btn" id="saveJsonBtn"><span class="tool-icon">⤴</span><span>Export</span></button>
-          <button class="tool-btn" id="loadJsonBtn"><span class="tool-icon">⤵</span><span>Import</span></button>
-          <button class="tool-btn warn-tool" id="resetBtn"><span class="tool-icon">✕</span><span>Clear Form</span></button>
+          <button class="tool-btn primary-tool" id="printBtn" title="Print"><span class="tool-icon">🖨</span><span>Print</span></button>
+          <button class="tool-btn" id="downloadReportBtn" title="PDF Report"><span class="tool-icon">⬇</span><span>PDF Report</span></button>
+          <button class="tool-btn" id="saveJsonBtn" title="Export JSON"><span class="tool-icon">⤴</span><span>Export</span></button>
+          <button class="tool-btn" id="loadJsonBtn" title="Import JSON"><span class="tool-icon">⤵</span><span>Import</span></button>
+          <button class="tool-btn warn-tool" id="resetBtn" title="Clear Form"><span class="tool-icon">✕</span><span>Clear Form</span></button>
         </div>
         <input id="jsonFileInput" type="file" accept="application/json" style="display:none;" />
       </div>
