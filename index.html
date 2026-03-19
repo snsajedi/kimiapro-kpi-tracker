@@ -124,6 +124,114 @@
       font-size: 0.88rem;
     }
 
+    .help-fab {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: 52px;
+      height: 52px;
+      border-radius: 999px;
+      border: 1px solid rgba(15,118,110,0.18);
+      background: linear-gradient(135deg, #0f766e, #115e59);
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: 800;
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.18);
+      z-index: 1100;
+    }
+
+    .help-fab:hover {
+      transform: translateY(-2px);
+    }
+
+    .help-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.46);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      z-index: 1200;
+    }
+
+    .help-modal.open {
+      display: flex;
+    }
+
+    .help-panel {
+      width: min(760px, 100%);
+      max-height: min(82vh, 920px);
+      overflow: auto;
+      border-radius: 18px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.22);
+    }
+
+    .help-head {
+      position: sticky;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 18px;
+      background: linear-gradient(135deg, #0f766e, #115e59);
+      color: white;
+      border-bottom: 1px solid rgba(255,255,255,0.14);
+    }
+
+    .help-head h3 {
+      margin: 0;
+      font-size: 1.05rem;
+    }
+
+    .help-close {
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      min-height: 36px;
+      padding: 0;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.10);
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    .help-body {
+      padding: 16px 18px 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .help-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 14px;
+      background: #fbfdff;
+    }
+
+    .help-card h4 {
+      margin: 0 0 8px;
+      font-size: 0.96rem;
+    }
+
+    .help-card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
     .app-footer strong {
       color: var(--text);
     }
@@ -1254,6 +1362,22 @@
     }
 
     @media (max-width: 700px) {
+      .help-fab {
+        right: 14px;
+        bottom: 14px;
+        width: 48px;
+        height: 48px;
+      }
+      .help-panel {
+        width: 100%;
+        max-height: 88vh;
+      }
+      .help-head {
+        padding: 14px 16px;
+      }
+      .help-body {
+        padding: 14px 16px 16px;
+      }
       .dashboard-kpis { grid-template-columns: 1fr; }
       .dashboard-table-wrap { overflow: auto; }
       .dashboard-table { min-width: 760px; }
@@ -1813,6 +1937,49 @@
         </div>
       </section>
     </div>
+      <button class="help-fab" id="helpFab" type="button" aria-label="Open instructions" title="Instructions">?</button>
+
+    <div class="help-modal" id="helpModal" aria-hidden="true">
+      <div class="help-panel" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
+        <div class="help-head">
+          <div>
+            <h3 id="helpTitle">Instructions & Guidelines</h3>
+          </div>
+          <button class="help-close" id="helpCloseBtn" type="button" aria-label="Close instructions">×</button>
+        </div>
+        <div class="help-body">
+          <div class="help-card">
+            <h4>Project Info</h4>
+            <p>Enter the project name, client, budget, planned hours, planned rate, revenue, and dates first. Estimated values are calculated from budget and planned labor, so this section sets the project baseline.</p>
+          </div>
+          <div class="help-card">
+            <h4>Actual Costs</h4>
+            <p>Enter real hours worked and real cost values here. Labor Cost is automatic from Actual Hours × Hourly Rate. This section drives the live KPI status, dashboard values, and variance analysis.</p>
+          </div>
+          <div class="help-card">
+            <h4>Anticipated to Complete</h4>
+            <p>Use Remaining Hours and Remaining Cost to estimate what is still needed to finish the job. The anticipated fields then calculate expected finish cost, finish profit, finish margin, and remaining labor cost.</p>
+          </div>
+          <div class="help-card">
+            <h4>KPI Trends, Variance, and Risk</h4>
+            <p>The charts and cards compare Planned, Actual, and Anticipated performance. Variance shows how far you are from plan. Risk level summarizes finish outlook based on anticipated margin, budget pressure, and hours overrun.</p>
+          </div>
+          <div class="help-card">
+            <h4>Project Health Criteria & Color Codes</h4>
+            <p>Status colors: <strong style="color:#15803d;">green</strong> = OK, <strong style="color:#ca8a04;">yellow</strong> = Warning, <strong style="color:#b91c1c;">red</strong> = Over Budget. For Budget Used, under 80% is green, 80% to 100% is yellow, and above 100% is red. Profit and margin stay healthier when values remain positive and close to or above the planned baseline.</p>
+            <p style="margin-top:8px;">Risk colors: <strong style="color:#15803d;">LOW</strong>, <strong style="color:#ca8a04;">MEDIUM</strong>, <strong style="color:#c2410c;">HIGH</strong>, and <strong style="color:#b91c1c;">CRITICAL</strong>. Current rules are based on anticipated finish values: low risk when margin and budget position are comfortable, medium when pressure starts building, high when finish cost or hours are expected to exceed plan, and critical when anticipated margin becomes very low or finish overrun becomes severe.</p>
+          </div>
+          <div class="help-card">
+            <h4>Saved Projects & Dashboard</h4>
+            <p>Use Save to store a project in the browser. The dashboard gives a quick view of all saved projects, including status and risk. Draft autosave does not overwrite a saved project unless you click Save.</p>
+          </div>
+          <div class="help-card">
+            <h4>Snapshots & PDF Report</h4>
+            <p>Save snapshots when you want a dated checkpoint with an optional note. Use PDF Report to download a print-friendly report that includes KPIs, comparison bars, variance, risk, and history.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -1826,6 +1993,13 @@
     let historySnapshots = [];
 
     const $ = (id) => document.getElementById(id);
+
+    function setHelpOpen(isOpen) {
+      const modal = $('helpModal');
+      if (!modal) return;
+      modal.classList.toggle('open', isOpen);
+      modal.setAttribute('aria-hidden', String(!isOpen));
+    }
 
     function num(value) {
       const n = parseFloat(value);
@@ -3176,6 +3350,15 @@
       console.assert(check2, 'Self-check failed: status threshold');
       console.assert(check3, 'Self-check failed: zero revenue margin handling');
     }
+
+    $('helpFab').addEventListener('click', () => setHelpOpen(true));
+    $('helpCloseBtn').addEventListener('click', () => setHelpOpen(false));
+    $('helpModal').addEventListener('click', (event) => {
+      if (event.target === $('helpModal')) setHelpOpen(false);
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') setHelpOpen(false);
+    });
 
     loadState();
     loadHistoryState();
