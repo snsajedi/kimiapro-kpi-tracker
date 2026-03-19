@@ -28,6 +28,16 @@
       color: var(--text);
     }
 
+    body.dark-mode {
+      --bg: #0f172a;
+      --card: #111827;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --line: #334155;
+      --shadow: 0 12px 34px rgba(2, 6, 23, 0.42);
+      background: linear-gradient(180deg, #0b1220 0%, #0f172a 100%);
+    }
+
     .wrap {
       max-width: 1100px;
       margin: 0 auto;
@@ -309,6 +319,35 @@
     .tool-btn.warn-tool:hover {
       background: rgba(255,255,255,0.14);
     }
+
+    .tool-btn.active-tool {
+      background: rgba(255,255,255,0.22);
+      border-color: rgba(255,255,255,0.28);
+    }
+
+    .screen-toggle {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      margin-left: auto;
+    }
+
+    .screen-btn {
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.10);
+      color: white;
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    .screen-btn.active {
+      background: rgba(255,255,255,0.22);
+    }
+
+    .app-screen { display: none; }
+    .app-screen.active { display: block; }
 
     .project-manager {
       display: flex;
@@ -1467,7 +1506,7 @@
             <h1>Project KPI Tracker</h1>
           </div>
         </div>
-        <div class="version-badge">Version 1.2</div>
+        <div class="version-badge">Version 2.0</div>
       </div>
       <p>Simple offline browser tool for tracking costs, hours, and project performance in real-world engineering and operations projects.</p>
       <div class="toolbar">
@@ -1477,11 +1516,17 @@
           <button class="tool-btn" id="saveJsonBtn" title="Export JSON"><span class="tool-icon">⤴</span><span>Export</span></button>
           <button class="tool-btn" id="loadJsonBtn" title="Import JSON"><span class="tool-icon">⤵</span><span>Import</span></button>
           <button class="tool-btn warn-tool" id="resetBtn" title="Clear Form"><span class="tool-icon">✕</span><span>Clear Form</span></button>
+          <button class="tool-btn" id="darkModeBtn" title="Dark Mode"><span class="tool-icon">◐</span><span>Dark Mode</span></button>
+        </div>
+        <div class="screen-toggle">
+          <button class="screen-btn active" id="dashboardViewBtn" type="button">Dashboard</button>
+          <button class="screen-btn" id="editorViewBtn" type="button">Project Editor</button>
         </div>
         <input id="jsonFileInput" type="file" accept="application/json" style="display:none;" />
       </div>
     </section>
 
+    <section class="app-screen dashboard-screen active" id="dashboardScreen">
     <section class="project-manager" aria-label="Project manager">
       <div class="pm-label">Saved Projects</div>
       <select id="projectSelect">
@@ -1524,6 +1569,23 @@
             <tr><td colspan="8" class="muted-note" style="padding:14px;">No saved projects yet.</td></tr>
           </tbody>
         </table>
+      </div>
+    </section>
+
+    </section>
+    </section>
+
+    <section class="app-screen editor-screen" id="editorScreen">
+    <section class="project-manager" aria-label="Project manager">
+      <div class="pm-label">Saved Projects</div>
+      <select id="projectSelectEditor">
+        <option value="">Current unsaved project</option>
+      </select>
+      <div class="pm-note" id="autosaveNoteEditor">Draft autosave only</div>
+      <div class="pm-actions">
+        <button class="project-btn" id="newProjectBtnEditor" type="button">New</button>
+        <button class="project-btn" id="saveProjectBtnEditor" type="button">Save</button>
+        <button class="project-btn" id="deleteProjectBtnEditor" type="button">Delete</button>
       </div>
     </section>
 
@@ -1937,6 +1999,7 @@
         </div>
       </section>
     </div>
+      </section>
       <button class="help-fab" id="helpFab" type="button" aria-label="Open instructions" title="Instructions">?</button>
 
     <div class="help-modal" id="helpModal" aria-hidden="true">
@@ -1993,6 +2056,25 @@
     let historySnapshots = [];
 
     const $ = (id) => document.getElementById(id);
+    let currentScreen = 'dashboard';
+
+    function setScreen(screen) {
+      currentScreen = screen;
+      $('dashboardScreen').classList.toggle('active', screen === 'dashboard');
+      $('editorScreen').classList.toggle('active', screen === 'editor');
+      $('dashboardViewBtn').classList.toggle('active', screen === 'dashboard');
+      $('editorViewBtn').classList.toggle('active', screen === 'editor');
+      syncStickyOffsets();
+      try { localStorage.setItem('kimiapro-screen-mode', screen); } catch (err) {}
+    }
+
+    function setDarkMode(isDark) {
+      document.body.classList.toggle('dark-mode', isDark);
+      $('darkModeBtn').classList.toggle('active-tool', isDark);
+      $('darkModeBtn').title = isDark ? 'Light Mode' : 'Dark Mode';
+      try { localStorage.setItem('kimiapro-dark-mode', isDark ? '1' : '0'); } catch (err) {}
+      syncStickyOffsets();
+    }
 
     function setHelpOpen(isOpen) {
       const modal = $('helpModal');
@@ -2228,6 +2310,8 @@
     function setAutosaveNote(text) {
       const el = $('autosaveNote');
       if (el) el.textContent = text;
+      const el2 = $('autosaveNoteEditor');
+      if (el2) el2.textContent = text;
     }
 
     function getSavedProjects() {
@@ -2256,12 +2340,14 @@
     }
 
     function refreshProjectSelect(selectedName = '') {
-      const select = $('projectSelect');
-      if (!select) return;
+      const select = $('projectSelect') || $('projectSelectEditor');
+      const selectEditor = $('projectSelectEditor');
+      if (!select && !selectEditor) return;
       const projects = getSavedProjects();
       const names = Object.keys(projects).sort((a, b) => a.localeCompare(b));
       const preferred = selectedName || getLastActiveProject();
-      select.innerHTML = '<option value="">Current unsaved project</option>';
+      if (select) select.innerHTML = '<option value="">Current unsaved project</option>';
+      if (selectEditor) selectEditor.innerHTML = '<option value="">Current unsaved project</option>';
       names.forEach((name) => {
         const option = document.createElement('option');
         const record = projects[name] || {};
@@ -2270,13 +2356,16 @@
         const icon = status.className === 'bad' ? '🔴' : status.className === 'warn' ? '🟡' : '🟢';
         option.value = name;
         option.textContent = `${icon} ${name}`;
-        select.appendChild(option);
+        if (select) select.appendChild(option.cloneNode(true));
+        if (selectEditor) selectEditor.appendChild(option);
       });
       if (preferred && projects[preferred]) {
-        select.value = preferred;
+        if (select) select.value = preferred;
+        if (selectEditor) selectEditor.value = preferred;
         setLastActiveProject(preferred);
       } else {
-        select.value = '';
+        if (select) select.value = '';
+        if (selectEditor) selectEditor.value = '';
         setLastActiveProject('');
       }
       renderDashboard();
@@ -2316,6 +2405,7 @@
       refreshProjectSelect(name);
       setLastActiveProject(name);
       setAutosaveNote(`Loaded project: ${name} (manual Save required to update)`);
+      setScreen('editor');
     }
 
     function deleteSelectedProject() {
@@ -2342,7 +2432,9 @@
         else el.value = '';
       });
       const projectSelect = $('projectSelect');
+      const projectSelectEditor = $('projectSelectEditor');
       if (projectSelect) projectSelect.value = '';
+      if (projectSelectEditor) projectSelectEditor.value = '';
       setLastActiveProject('');
       setAutosaveNote('Working in unsaved draft');
       update();
@@ -3304,16 +3396,33 @@
       clearProjectForm();
       refreshProjectSelect('');
     });
+    $('newProjectBtnEditor').addEventListener('click', () => {
+      clearProjectForm();
+      refreshProjectSelect('');
+    });
+
+    $('dashboardViewBtn').addEventListener('click', () => setScreen('dashboard'));
+    $('editorViewBtn').addEventListener('click', () => setScreen('editor'));
+    $('darkModeBtn').addEventListener('click', () => setDarkMode(!document.body.classList.contains('dark-mode')));
 
     $('saveProjectBtn').addEventListener('click', () => {
+      saveCurrentProject();
+    });
+    $('saveProjectBtnEditor').addEventListener('click', () => {
       saveCurrentProject();
     });
 
     $('deleteProjectBtn').addEventListener('click', () => {
       deleteSelectedProject();
     });
+    $('deleteProjectBtnEditor').addEventListener('click', () => {
+      deleteSelectedProject();
+    });
 
     $('projectSelect').addEventListener('change', (event) => {
+      loadSelectedProject(event.target.value);
+    });
+    $('projectSelectEditor').addEventListener('change', (event) => {
       loadSelectedProject(event.target.value);
     });
 
@@ -3360,6 +3469,8 @@
       if (event.key === 'Escape') setHelpOpen(false);
     });
 
+    try { setDarkMode(localStorage.getItem('kimiapro-dark-mode') === '1'); } catch (err) {}
+    try { setScreen(localStorage.getItem('kimiapro-screen-mode') || 'dashboard'); } catch (err) { setScreen('dashboard'); }
     loadState();
     loadHistoryState();
     refreshProjectSelect();
