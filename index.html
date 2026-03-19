@@ -38,6 +38,148 @@
       background: linear-gradient(180deg, #0b1220 0%, #0f172a 100%);
     }
 
+    body.dark-mode .card,
+    body.dark-mode .kpi-strip,
+    body.dark-mode .project-manager,
+    body.dark-mode .dashboard-kpi,
+    body.dark-mode .dashboard-table-wrap,
+    body.dark-mode .history-panel,
+    body.dark-mode .chart-card,
+    body.dark-mode .compare-block,
+    body.dark-mode .variance-block,
+    body.dark-mode .risk-block,
+    body.dark-mode .help-panel,
+    body.dark-mode .line-chart,
+    body.dark-mode .trend-pill,
+    body.dark-mode .kpi,
+    body.dark-mode .variance-card,
+    body.dark-mode .risk-card,
+    body.dark-mode .history-item,
+    body.dark-mode .row-note,
+    body.dark-mode .dashboard-load-btn,
+    body.dark-mode .project-btn,
+    body.dark-mode .help-card,
+    body.dark-mode .summary-item,
+    body.dark-mode .compare-track,
+    body.dark-mode .chart-wrap,
+    body.dark-mode .dashboard-table th,
+    body.dark-mode .dashboard-table td {
+      background: #111827;
+      color: var(--text);
+      border-color: var(--line);
+    }
+
+    body.dark-mode .dashboard-table th,
+    body.dark-mode .dashboard-table tbody tr:hover,
+    body.dark-mode .chart-wrap,
+    body.dark-mode .kpi,
+    body.dark-mode .dashboard-kpi,
+    body.dark-mode .history-item,
+    body.dark-mode .line-chart,
+    body.dark-mode .variance-card,
+    body.dark-mode .risk-card,
+    body.dark-mode .trend-pill,
+    body.dark-mode .help-card,
+    body.dark-mode .compare-block {
+      background: linear-gradient(180deg, #111827, #0f172a);
+    }
+
+    body.dark-mode .kpi-strip {
+      background: rgba(17, 24, 39, 0.96);
+    }
+
+    body.dark-mode input,
+    body.dark-mode select,
+    body.dark-mode textarea {
+      background: #0b1220;
+      color: #f8fafc;
+      border-color: #475569;
+    }
+
+    body.dark-mode .input-manual {
+      background: #172554;
+      border-color: #3b82f6;
+      color: #eff6ff;
+    }
+
+    body.dark-mode .input-auto {
+      background: #1f2937;
+      border-color: #475569;
+      color: #f8fafc;
+    }
+
+    body.dark-mode input::placeholder,
+    body.dark-mode textarea::placeholder {
+      color: #94a3b8;
+    }
+
+    body.dark-mode label,
+    body.dark-mode .kpi .label,
+    body.dark-mode .chart-label,
+    body.dark-mode .dashboard-kpi .d-label,
+    body.dark-mode .compare-label,
+    body.dark-mode .compare-sub,
+    body.dark-mode .variance-card .v-label,
+    body.dark-mode .variance-card .v-sub,
+    body.dark-mode .risk-card .r-label,
+    body.dark-mode .risk-card .r-sub,
+    body.dark-mode .trend-pill .t-label,
+    body.dark-mode .summary-item .s-label,
+    body.dark-mode .muted-note,
+    body.dark-mode .dashboard-note,
+    body.dark-mode .pm-label,
+    body.dark-mode .pm-note,
+    body.dark-mode .kpi-strip-title,
+    body.dark-mode .history-item .row-sub,
+    body.dark-mode .dashboard-table th,
+    body.dark-mode .help-card p {
+      color: var(--muted);
+    }
+
+    body.dark-mode .kpi .value,
+    body.dark-mode .chart-value,
+    body.dark-mode .trend-pill .t-value,
+    body.dark-mode .summary-item .s-value,
+    body.dark-mode .dashboard-kpi .d-value,
+    body.dark-mode .dashboard-table td,
+    body.dark-mode .help-card h4,
+    body.dark-mode .history-item .row-top,
+    body.dark-mode .compare-title,
+    body.dark-mode .compare-value,
+    body.dark-mode .risk-head h3,
+    body.dark-mode .dashboard-head h2,
+    body.dark-mode .card h2,
+    body.dark-mode .card h3 {
+      color: #f8fafc;
+    }
+
+    body.dark-mode .progress {
+      background: #334155;
+    }
+
+    body.dark-mode .bar-shell,
+    body.dark-mode .report-mini-shell {
+      background: linear-gradient(180deg, #1f2937, #334155);
+    }
+
+    body.dark-mode .compare-track {
+      background: #334155;
+    }
+
+    body.dark-mode .dashboard-table-wrap,
+    body.dark-mode .history-panel,
+    body.dark-mode .line-chart,
+    body.dark-mode .compare-block,
+    body.dark-mode .variance-block,
+    body.dark-mode .risk-block,
+    body.dark-mode .help-panel,
+    body.dark-mode .project-manager,
+    body.dark-mode .dashboard-kpi,
+    body.dark-mode .kpi,
+    body.dark-mode .card {
+      box-shadow: 0 18px 36px rgba(2, 6, 23, 0.38);
+    }
+
     .wrap {
       max-width: 1100px;
       margin: 0 auto;
@@ -325,6 +467,12 @@
       border-color: rgba(255,255,255,0.28);
     }
 
+    body.dark-mode .tool-btn.active-tool {
+      background: rgba(255,255,255,0.22);
+      border-color: rgba(255,255,255,0.32);
+      color: #ffffff;
+    }
+
     .screen-toggle {
       display: inline-flex;
       gap: 8px;
@@ -509,6 +657,21 @@
     .dashboard-pill.risk-critical { background: #fef2f2; color: var(--bad); border-color: #fca5a5; }
     .dashboard-pill.risk-medium { background: #fefce8; color: var(--warn); border-color: #fde047; }
     .dashboard-pill.risk-low { background: #f0fdf4; color: var(--ok); border-color: #bbf7d0; }
+
+    body.dark-mode .dashboard-pill.ok,
+    body.dark-mode .ok { background: rgba(22,163,74,0.16); border-color: rgba(34,197,94,0.38); color: #86efac; }
+    body.dark-mode .dashboard-pill.warn,
+    body.dark-mode .warn { background: rgba(202,138,4,0.18); border-color: rgba(250,204,21,0.38); color: #fde68a; }
+    body.dark-mode .dashboard-pill.bad,
+    body.dark-mode .bad { background: rgba(185,28,28,0.18); border-color: rgba(248,113,113,0.38); color: #fca5a5; }
+    body.dark-mode .dashboard-pill.risk-low,
+    body.dark-mode .risk-badge.risk-low { background: rgba(22,163,74,0.16); border-color: rgba(34,197,94,0.38); color: #86efac; }
+    body.dark-mode .dashboard-pill.risk-medium,
+    body.dark-mode .risk-badge.risk-medium { background: rgba(202,138,4,0.18); border-color: rgba(250,204,21,0.38); color: #fde68a; }
+    body.dark-mode .dashboard-pill.risk-high,
+    body.dark-mode .risk-badge.risk-high { background: rgba(194,65,12,0.18); border-color: rgba(251,146,60,0.38); color: #fdba74; }
+    body.dark-mode .dashboard-pill.risk-critical,
+    body.dark-mode .risk-badge.risk-critical { background: rgba(185,28,28,0.18); border-color: rgba(248,113,113,0.38); color: #fca5a5; }
 
     .dashboard-load-btn {
       padding: 7px 10px;
