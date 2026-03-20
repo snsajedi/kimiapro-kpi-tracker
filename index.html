@@ -181,6 +181,23 @@
       box-shadow: 0 18px 36px rgba(2, 6, 23, 0.38);
     }
 
+    body.dark-mode .project-manager::before {
+      background: linear-gradient(180deg, rgba(45,212,191,0.9), rgba(96,165,250,0.65));
+    }
+
+    body.dark-mode .dashboard-kpi:hover,
+    body.dark-mode .kpi:hover,
+    body.dark-mode .trend-pill:hover,
+    body.dark-mode .kpi-chip:hover {
+      box-shadow: 0 18px 30px rgba(2, 6, 23, 0.42);
+    }
+
+    body.dark-mode .screen-btn.active,
+    body.dark-mode .screen-btn:hover {
+      background: rgba(255,255,255,0.22);
+      color: #ffffff;
+    }
+
     .wrap {
       max-width: 1100px;
       margin: 0 auto;
@@ -188,15 +205,26 @@
     }
 
     .hero {
-      background: linear-gradient(135deg, #0f766e, #115e59);
+      background: linear-gradient(135deg, #0f766e, #2563eb 55%, #7c3aed 100%);
       color: white;
-      border-radius: 0;
-      padding: 8px 12px;
-      box-shadow: none;
+      border-radius: 20px;
+      padding: 12px 14px;
+      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12);
       margin-bottom: 10px;
       position: sticky;
-      top: 0;
+      top: 8px;
       z-index: 1000;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+      pointer-events: none;
     }
 
     .hero h1 {
@@ -212,35 +240,25 @@
     }
 
     .brand-row {
-      margin-bottom: 4px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 14px;
+      gap: 14px;
       flex-wrap: wrap;
+      margin-bottom: 0;
+      position: relative;
+      z-index: 1;
     }
 
     .brand-lockup {
       display: flex;
       align-items: center;
       gap: 14px;
+      min-width: 0;
+      position: relative;
     }
 
-    .brand-mark {
-      width: 34px;
-      height: 34px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.28), rgba(255,255,255,0.1));
-      border: 1px solid rgba(255,255,255,0.22);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 1rem;
-      letter-spacing: 0.03em;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.15);
-    }
+    
 
     .brand-meta h1 {
       margin: 0 0 4px;
@@ -248,11 +266,175 @@
 
     .brand-kicker {
       margin: 0;
-      font-size: 0.68rem;
+      font-size: 0.66rem;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.72);
+    }
+
+    .hero-subline {
+      margin-top: 6px;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.84);
+      position: relative;
+      z-index: 1;
+    }
+
+    .top-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 10px 0 14px;
+      flex-wrap: wrap;
+    }
+
+    .top-nav .screen-btn {
+      background: linear-gradient(180deg, #ffffff, #f8fafc);
+      color: var(--text);
+      border: 1px solid #dbe4ea;
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+    }
+
+    .top-nav .screen-btn.active {
+      background: linear-gradient(135deg, #0f766e, #2563eb);
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 10px 22px rgba(37, 99, 235, 0.22);
+    }
+
+    body.dark-mode .top-nav .screen-btn {
+      background: linear-gradient(180deg, #111827, #0f172a);
+      color: #e5e7eb;
+      border-color: #334155;
+      box-shadow: 0 10px 20px rgba(2, 6, 23, 0.28);
+    }
+
+    body.dark-mode .top-nav .screen-btn.active {
+      background: linear-gradient(135deg, #0f766e, #2563eb);
+      color: white;
+      border-color: transparent;
+    }
+
+    .tool-launcher {
+      position: relative;
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.22);
+      background: linear-gradient(135deg, #0f766e, #2563eb 60%, #7c3aed);
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1rem;
+      box-shadow: 0 14px 28px rgba(15, 23, 42, 0.16);
+      z-index: 2;
+      flex: 0 0 46px;
+    }
+
+    .tool-pop {
+      position: absolute;
+      left: 0;
+      top: calc(100% + 10px);
+      width: min(320px, calc(100vw - 36px));
+      border-radius: 20px;
+      border: 1px solid rgba(148,163,184,0.22);
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 26px 60px rgba(15, 23, 42, 0.18);
+      padding: 14px;
+      display: none;
+      z-index: 1140;
+    }
+
+    .tool-pop.open { display: block; }
+
+    .tool-pop-head {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .tool-pop-title {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: var(--text);
+      margin: 0 0 4px;
+    }
+
+    .tool-pop-sub {
+      font-size: 0.76rem;
+      color: var(--muted);
+      line-height: 1.45;
+      margin: 0;
+    }
+
+    .tool-pop-close {
+      width: 34px;
+      height: 34px;
+      min-width: 34px;
+      min-height: 34px;
+      border-radius: 999px;
+      border: 1px solid #dbe4ea;
+      background: #ffffff;
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .tool-pop .tool-btn {
+      width: 100%;
+      min-width: 0;
+      height: 54px;
+      min-height: 54px;
+      flex: 0 0 auto;
+      border-radius: 14px;
+      background: linear-gradient(180deg, #ffffff, #f8fafc);
+      color: var(--text);
+      border: 1px solid #dbe4ea;
+      display: grid;
+      place-items: center;
+      gap: 4px;
+      padding: 8px 6px;
+    }
+
+    .tool-pop .tool-btn span:last-child {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .tool-pop .tool-btn .tool-icon {
+      font-size: 1rem;
+    }
+
+    body.dark-mode .tool-pop {
+      background: rgba(15, 23, 42, 0.92);
+      border-color: #334155;
+      box-shadow: 0 28px 60px rgba(2, 6, 23, 0.5);
+    }
+
+    body.dark-mode .tool-pop-title { color: #f8fafc; }
+    body.dark-mode .tool-pop-sub { color: #94a3b8; }
+    body.dark-mode .tool-pop-close,
+    body.dark-mode .tool-pop .tool-btn {
+      background: linear-gradient(180deg, #111827, #0f172a);
+      color: #f8fafc;
+      border-color: #334155;
     }
 
     .version-badge {
@@ -390,11 +572,7 @@
     }
 
     .toolbar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 10px;
-      align-items: center;
+      display: none;
     }
 
     .toolbar-group {
@@ -493,6 +671,11 @@
 
     .screen-btn.active {
       background: rgba(255,255,255,0.22);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.16);
+    }
+
+    .screen-btn:hover {
+      background: rgba(255,255,255,0.18);
     }
 
     .app-screen { display: none; }
@@ -511,6 +694,17 @@
       box-shadow: var(--shadow);
       position: relative;
       overflow: hidden;
+    }
+
+    .project-manager::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(180deg, #0f766e, #3b82f6);
+      opacity: 0.9;
     }
 
     .project-manager .pm-label {
@@ -590,6 +784,11 @@
       border-radius: 14px;
       padding: 12px 14px;
       background: linear-gradient(180deg, #ffffff, #f8fafc);
+    }
+
+    .dashboard-kpi:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 22px rgba(15, 23, 42, 0.08);
     }
 
     .dashboard-kpi .d-label {
@@ -891,6 +1090,12 @@
       line-height: 1;
       white-space: nowrap;
       box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .kpi-chip:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 16px rgba(15, 23, 42, 0.08);
     }
 
     .kpi-chip strong {
@@ -1401,6 +1606,12 @@
       border-radius: 14px;
       padding: 12px 14px;
       background: #ffffff;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .trend-pill:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 18px rgba(15, 23, 42, 0.08);
     }
 
     .trend-pill .t-label {
@@ -1590,6 +1801,35 @@
     }
 
     @media (max-width: 700px) {
+      .hero {
+        padding: 10px 12px;
+        top: 6px;
+      }
+      .hero-subline {
+        display: none;
+      }
+      .tool-launcher {
+        width: 42px;
+        height: 42px;
+        flex-basis: 42px;
+      }
+      .tool-pop {
+        left: 0;
+        top: calc(100% + 8px);
+        width: min(290px, calc(100vw - 28px));
+      }
+      .tool-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .top-nav {
+        margin-top: 8px;
+      }
+      .brand-lockup {
+        gap: 10px;
+      }
+      .brand-meta h1 {
+        font-size: 0.98rem;
+      }
       .help-fab {
         right: 14px;
         bottom: 14px;
@@ -1686,34 +1926,44 @@
 </head>
 <body>
   <div class="wrap">
+    
+
     <section class="hero">
       <div class="brand-row">
         <div class="brand-lockup">
-          <div class="brand-mark">KP</div>
+          <button class="tool-launcher" id="toolLauncherBtn" type="button" aria-label="Open tools">KP</button>
+          <div class="tool-pop" id="toolPop">
+            <div class="tool-pop-head">
+              <div>
+                <div class="tool-pop-title">KimiaPro Tools</div>
+                <p class="tool-pop-sub">Quick actions, export tools, theme, and reset controls.</p>
+              </div>
+              <button class="tool-pop-close" id="toolPopCloseBtn" type="button" aria-label="Close tools">×</button>
+            </div>
+            <div class="tool-grid" role="toolbar" aria-label="Main tools">
+              <button class="tool-btn primary-tool" id="printBtn" title="Print"><span class="tool-icon">🖨</span><span>Print</span></button>
+              <button class="tool-btn" id="downloadReportBtn" title="PDF Report"><span class="tool-icon">⬇</span><span>PDF</span></button>
+              <button class="tool-btn" id="saveJsonBtn" title="Export JSON"><span class="tool-icon">⤴</span><span>Export</span></button>
+              <button class="tool-btn" id="loadJsonBtn" title="Import JSON"><span class="tool-icon">⤵</span><span>Import</span></button>
+              <button class="tool-btn warn-tool" id="resetBtn" title="Clear Form"><span class="tool-icon">✕</span><span>Clear</span></button>
+              <button class="tool-btn" id="darkModeBtn" title="Dark Mode"><span class="tool-icon">◐</span><span>Theme</span></button>
+            </div>
+            <input id="jsonFileInput" type="file" accept="application/json" style="display:none;" />
+          </div>
           <div class="brand-meta">
-            <p class="brand-kicker">KimiaPro Tools</p>
+            <p class="brand-kicker">KimiaPro</p>
             <h1>Project KPI Tracker</h1>
           </div>
         </div>
-        <div class="version-badge">Version 2.1</div>
+        <div class="version-badge">Version 2.2</div>
       </div>
-      <p>Simple offline browser tool for tracking costs, hours, and project performance in real-world engineering and operations projects.</p>
-      <div class="toolbar">
-        <div class="toolbar-group" role="toolbar" aria-label="Main tools">
-          <button class="tool-btn primary-tool" id="printBtn" title="Print"><span class="tool-icon">🖨</span><span>Print</span></button>
-          <button class="tool-btn" id="downloadReportBtn" title="PDF Report"><span class="tool-icon">⬇</span><span>PDF Report</span></button>
-          <button class="tool-btn" id="saveJsonBtn" title="Export JSON"><span class="tool-icon">⤴</span><span>Export</span></button>
-          <button class="tool-btn" id="loadJsonBtn" title="Import JSON"><span class="tool-icon">⤵</span><span>Import</span></button>
-          <button class="tool-btn warn-tool" id="resetBtn" title="Clear Form"><span class="tool-icon">✕</span><span>Clear Form</span></button>
-          <button class="tool-btn" id="darkModeBtn" title="Dark Mode"><span class="tool-icon">◐</span><span>Dark Mode</span></button>
-        </div>
-        <div class="screen-toggle">
-          <button class="screen-btn active" id="dashboardViewBtn" type="button">Dashboard</button>
-          <button class="screen-btn" id="editorViewBtn" type="button">Project Editor</button>
-        </div>
-        <input id="jsonFileInput" type="file" accept="application/json" style="display:none;" />
-      </div>
+      <div class="hero-subline">Compact project control workspace for engineering, operations, and consulting use.</div>
     </section>
+
+    <div class="top-nav">
+      <button class="screen-btn active" id="dashboardViewBtn" type="button">Dashboard</button>
+      <button class="screen-btn" id="editorViewBtn" type="button">Project Editor</button>
+    </div>
 
     <section class="app-screen dashboard-screen active" id="dashboardScreen">
     <section class="project-manager" aria-label="Project manager">
@@ -2270,6 +2520,12 @@
       if (!modal) return;
       modal.classList.toggle('open', isOpen);
       modal.setAttribute('aria-hidden', String(!isOpen));
+    }
+
+    function setToolPopOpen(isOpen) {
+      const pop = $('toolPop');
+      if (!pop) return;
+      pop.classList.toggle('open', isOpen);
     }
 
     function num(value) {
@@ -3649,13 +3905,26 @@
       console.assert(check3, 'Self-check failed: zero revenue margin handling');
     }
 
+    $('toolLauncherBtn').addEventListener('click', () => setToolPopOpen(true));
+        $('toolPopCloseBtn').addEventListener('click', () => setToolPopOpen(false));
+    document.addEventListener('click', (event) => {
+      const pop = $('toolPop');
+      const launcher = $('toolLauncherBtn');
+      if (!pop || !pop.classList.contains('open')) return;
+      if (pop.contains(event.target) || launcher.contains(event.target)) return;
+      setToolPopOpen(false);
+    });
+
     $('helpFab').addEventListener('click', () => setHelpOpen(true));
     $('helpCloseBtn').addEventListener('click', () => setHelpOpen(false));
     $('helpModal').addEventListener('click', (event) => {
       if (event.target === $('helpModal')) setHelpOpen(false);
     });
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') setHelpOpen(false);
+      if (event.key === 'Escape') {
+        setHelpOpen(false);
+        setToolPopOpen(false);
+      }
     });
 
     try { setDarkMode(localStorage.getItem('kimiapro-dark-mode') === '1'); } catch (err) {}
