@@ -39,9 +39,6 @@
     }
 
     body.dark-mode .card,
-    body.dark-mode .project-manager::before,
-    body.dark-mode .card::before,
-    body.dark-mode .kpi-strip::before,
     body.dark-mode .kpi-strip,
     body.dark-mode .project-manager,
     body.dark-mode .dashboard-kpi,
@@ -85,37 +82,6 @@
     body.dark-mode .help-card,
     body.dark-mode .compare-block {
       background: linear-gradient(180deg, #111827, #0f172a);
-    }
-
-    body.dark-mode .card::before,
-    body.dark-mode .project-manager::before {
-      background: linear-gradient(90deg, rgba(45,212,191,0.9), rgba(96,165,250,0.65));
-    }
-
-    body.dark-mode .card:hover,
-    body.dark-mode .dashboard-kpi:hover,
-    body.dark-mode .kpi:hover,
-    body.dark-mode .trend-pill:hover,
-    body.dark-mode .kpi-chip:hover {
-      box-shadow: 0 18px 30px rgba(2, 6, 23, 0.42);
-    }
-
-    body.dark-mode .card::before,
-    body.dark-mode .project-manager::before {
-      background: linear-gradient(90deg, rgba(45,212,191,0.9), rgba(96,165,250,0.65));
-    }
-
-    body.dark-mode .kpi:hover,
-    body.dark-mode .trend-pill:hover,
-    body.dark-mode .dashboard-kpi:hover,
-    body.dark-mode .kpi-chip:hover {
-      box-shadow: 0 16px 28px rgba(2, 6, 23, 0.42);
-    }
-
-    body.dark-mode .screen-btn.active,
-    body.dark-mode .screen-btn:hover {
-      background: rgba(255,255,255,0.22);
-      color: #ffffff;
     }
 
     body.dark-mode .kpi-strip {
@@ -232,42 +198,10 @@
       color: #ffffff;
     }
 
-    body.dark-mode .card::before,
-    body.dark-mode .project-manager::before {
-      background: linear-gradient(90deg, rgba(45,212,191,0.9), rgba(96,165,250,0.65));
-    }
-
-    body.dark-mode .card:hover,
-    body.dark-mode .dashboard-kpi:hover,
-    body.dark-mode .trend-pill:hover,
-    body.dark-mode .kpi-chip:hover {
-      box-shadow: 0 18px 30px rgba(2, 6, 23, 0.42);
-    }
-
-    body.dark-mode .screen-btn.active,
-    body.dark-mode .screen-btn:hover {
-      background: rgba(255,255,255,0.22);
-      color: #ffffff;
-    }
-
     .wrap {
       max-width: 1100px;
       margin: 0 auto;
       padding: 12px 16px 24px;
-    }
-
-    @media (max-width: 900px) {
-      .hero,
-      .top-nav {
-        margin-left: clamp(56px, 9vw, 74px);
-      }
-    }
-
-    @media (max-width: 520px) {
-      .hero,
-      .top-nav {
-        margin-left: 0;
-      }
     }
 
     .hero {
@@ -321,6 +255,7 @@
       align-items: center;
       gap: 14px;
       min-width: 0;
+      position: relative;
     }
 
     
@@ -383,9 +318,9 @@
 
     .tool-launcher {
       position: relative;
-      width: 48px;
-      height: 48px;
-      border-radius: 18px;
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
       border: 1px solid rgba(255,255,255,0.22);
       background: linear-gradient(135deg, #0f766e, #2563eb 60%, #7c3aed);
       color: white;
@@ -401,7 +336,7 @@
 
     .tool-pop {
       position: absolute;
-      left: 16px;
+      left: 0;
       top: calc(100% + 10px);
       width: min(320px, calc(100vw - 36px));
       border-radius: 20px;
@@ -524,6 +459,105 @@
       font-size: 0.88rem;
     }
 
+    .settings-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.46);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      z-index: 1210;
+    }
+
+    .settings-modal.open {
+      display: flex;
+    }
+
+    .settings-panel {
+      width: min(760px, 100%);
+      max-height: min(82vh, 920px);
+      overflow: auto;
+      border-radius: 18px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.22);
+    }
+
+    .settings-head {
+      position: sticky;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 18px;
+      background: linear-gradient(135deg, #0f766e, #115e59);
+      color: white;
+      border-bottom: 1px solid rgba(255,255,255,0.14);
+    }
+
+    .settings-head h3 {
+      margin: 0;
+      font-size: 1.05rem;
+    }
+
+    .settings-close {
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      min-height: 36px;
+      padding: 0;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.10);
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    .settings-body {
+      padding: 16px 18px 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .settings-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 14px;
+      background: #fbfdff;
+    }
+
+    .settings-card h4 {
+      margin: 0 0 8px;
+      font-size: 0.96rem;
+    }
+
+    .settings-card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    body.dark-mode .settings-panel {
+      background: #111827;
+      border-color: #334155;
+      box-shadow: 0 24px 60px rgba(2, 6, 23, 0.5);
+    }
+
+    body.dark-mode .settings-card {
+      background: linear-gradient(180deg, #111827, #0f172a);
+      border-color: #334155;
+    }
+
+    body.dark-mode .settings-card h4 { color: #f8fafc; }
+    body.dark-mode .settings-card p { color: #94a3b8; }
+
     .help-fab {
       position: fixed;
       right: 18px;
@@ -541,7 +575,6 @@
       font-weight: 800;
       box-shadow: 0 14px 30px rgba(15, 23, 42, 0.18);
       z-index: 1100;
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
     }
 
     .help-fab:hover {
@@ -643,6 +676,7 @@
 
     .toolbar-group {
       display: inline-flex;
+      width: fit-content;
       max-width: 100%;
       align-items: center;
       gap: 6px;
@@ -651,7 +685,1178 @@
       background: rgba(255,255,255,0.10);
       border: 1px solid rgba(255,255,255,0.14);
       backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px); height: 130px; }
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .tool-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      width: 38px;
+      min-width: 38px;
+      height: 38px;
+      min-height: 38px;
+      padding: 0;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.08);
+      color: white;
+      font-size: 0.82rem;
+      font-weight: 700;
+      line-height: 1;
+      flex: 0 0 38px;
+    }
+
+    .tool-btn .tool-icon {
+      font-size: 0.95rem;
+      opacity: 0.95;
+    }
+
+    .tool-btn span:last-child {
+      display: none;
+    }
+
+    .tool-btn:hover {
+      background: rgba(255,255,255,0.16);
+    }
+
+    .tool-btn.primary-tool {
+      background: white;
+      color: #0f766e;
+      border-color: rgba(255,255,255,0.26);
+    }
+
+    .tool-btn.primary-tool:hover {
+      background: #f8fafc;
+    }
+
+    .tool-btn.warn-tool {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.14);
+    }
+
+    .tool-btn.warn-tool:hover {
+      background: rgba(255,255,255,0.14);
+    }
+
+    .tool-btn.active-tool {
+      background: rgba(255,255,255,0.22);
+      border-color: rgba(255,255,255,0.28);
+    }
+
+    body.dark-mode .tool-btn.active-tool {
+      background: rgba(255,255,255,0.22);
+      border-color: rgba(255,255,255,0.32);
+      color: #ffffff;
+    }
+
+    .screen-toggle {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      margin-left: auto;
+    }
+
+    .screen-btn {
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.10);
+      color: white;
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    .screen-btn.active {
+      background: rgba(255,255,255,0.22);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.16);
+    }
+
+    .screen-btn:hover {
+      background: rgba(255,255,255,0.18);
+    }
+
+    .app-screen { display: none; }
+    .app-screen.active { display: block; }
+
+    .project-manager {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 12px;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.92);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-manager::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(180deg, #0f766e, #3b82f6);
+      opacity: 0.9;
+    }
+
+    .project-manager .pm-label {
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    .project-manager select {
+      min-width: 220px;
+      max-width: 320px;
+    }
+
+    .project-manager .pm-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .project-manager .pm-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-left: auto;
+    }
+
+    .project-btn {
+      padding: 9px 12px;
+      border-radius: 10px;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .project-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .dashboard-card {
+      margin-bottom: 12px;
+    }
+
+    .dashboard-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .dashboard-head h2 {
+      margin: 0;
+    }
+
+    .dashboard-note {
+      color: var(--muted);
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .dashboard-kpis {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .dashboard-kpi {
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 12px 14px;
+      background: linear-gradient(180deg, #ffffff, #f8fafc);
+    }
+
+    .dashboard-kpi:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 22px rgba(15, 23, 42, 0.08);
+    }
+
+    .dashboard-kpi .d-label {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 700;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .dashboard-kpi .d-value {
+      display: block;
+      font-size: 1.02rem;
+      font-weight: 800;
+    }
+
+    .dashboard-table-wrap {
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    .dashboard-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    .dashboard-table th,
+    .dashboard-table td {
+      padding: 11px 12px;
+      border-bottom: 1px solid #eef2f7;
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    .dashboard-table th {
+      background: #f8fafc;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .dashboard-table tbody tr:hover {
+      background: #fbfdff;
+    }
+
+    .dashboard-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .dashboard-pill.ok { background: #f0fdf4; color: var(--ok); border-color: #bbf7d0; }
+    .dashboard-pill.warn { background: #fefce8; color: var(--warn); border-color: #fde047; }
+    .dashboard-pill.bad { background: #fef2f2; color: var(--bad); border-color: #fca5a5; }
+    .dashboard-pill.risk-high { background: #fff7ed; color: #c2410c; border-color: #fdba74; }
+    .dashboard-pill.risk-critical { background: #fef2f2; color: var(--bad); border-color: #fca5a5; }
+    .dashboard-pill.risk-medium { background: #fefce8; color: var(--warn); border-color: #fde047; }
+    .dashboard-pill.risk-low { background: #f0fdf4; color: var(--ok); border-color: #bbf7d0; }
+
+    body.dark-mode .dashboard-pill.ok,
+    body.dark-mode .ok { background: rgba(22,163,74,0.16); border-color: rgba(34,197,94,0.38); color: #86efac; }
+    body.dark-mode .dashboard-pill.warn,
+    body.dark-mode .warn { background: rgba(202,138,4,0.18); border-color: rgba(250,204,21,0.38); color: #fde68a; }
+    body.dark-mode .dashboard-pill.bad,
+    body.dark-mode .bad { background: rgba(185,28,28,0.18); border-color: rgba(248,113,113,0.38); color: #fca5a5; }
+    body.dark-mode .dashboard-pill.risk-low,
+    body.dark-mode .risk-badge.risk-low { background: rgba(22,163,74,0.16); border-color: rgba(34,197,94,0.38); color: #86efac; }
+    body.dark-mode .dashboard-pill.risk-medium,
+    body.dark-mode .risk-badge.risk-medium { background: rgba(202,138,4,0.18); border-color: rgba(250,204,21,0.38); color: #fde68a; }
+    body.dark-mode .dashboard-pill.risk-high,
+    body.dark-mode .risk-badge.risk-high { background: rgba(194,65,12,0.18); border-color: rgba(251,146,60,0.38); color: #fdba74; }
+    body.dark-mode .dashboard-pill.risk-critical,
+    body.dark-mode .risk-badge.risk-critical { background: rgba(185,28,28,0.18); border-color: rgba(248,113,113,0.38); color: #fca5a5; }
+
+    .dashboard-load-btn {
+      padding: 7px 10px;
+      border-radius: 9px;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 0.82rem;
+    }
+
+    button {
+      border: none;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+
+    button:hover { transform: translateY(-1px); }
+
+    
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h2, .card h3 {
+      margin-top: 0;
+      margin-bottom: 16px;
+    }
+
+    .span-12 { grid-column: span 12; }
+    .span-7 { grid-column: span 7; }
+    .span-5 { grid-column: span 5; }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .project-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .field.span-1 { grid-column: span 1; }
+    .field.span-2 { grid-column: span 2; }
+    .field.span-4 { grid-column: 1 / -1; }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .compact-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(120px, 1fr));
+      gap: 12px;
+      align-items: end;
+    }
+
+    .compact-grid.compact-2 {
+      grid-template-columns: repeat(2, minmax(140px, 1fr));
+      max-width: 520px;
+    }
+
+    .compact-field label {
+      font-size: 0.82rem;
+      margin-bottom: 4px;
+    }
+
+    .compact-field input {
+      padding: 10px 12px;
+      font-size: 0.92rem;
+      border-radius: 12px;
+    }
+
+    .field.full { grid-column: 1 / -1; }
+
+    label {
+      font-size: 0.92rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid #d1d5db;
+      border-radius: 14px;
+      padding: 12px 14px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: all 0.15s ease;
+      background: #ffffff;
+      color: var(--text);
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #0f766e;
+      box-shadow: 0 0 0 3px rgba(15,118,110,0.15);
+    }
+
+    .input-manual {
+      background: #eef6ff;
+      border-color: #93c5fd;
+    }
+
+    .input-auto {
+      background: #f3f4f6;
+      border-color: #d1d5db;
+      color: #374151;
+      font-weight: 600;
+    }
+
+    select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: linear-gradient(45deg, transparent 50%, #64748b 50%), linear-gradient(135deg, #64748b 50%, transparent 50%);
+      background-position: calc(100% - 18px) calc(1em + 2px), calc(100% - 13px) calc(1em + 2px);
+      background-size: 5px 5px, 5px 5px;
+      background-repeat: no-repeat;
+      padding-right: 36px;
+    }
+
+    textarea {
+      min-height: 88px;
+      resize: vertical;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .kpi-strip {
+      position: sticky;
+      top: calc(var(--hero-offset, 140px) + 8px);
+      z-index: 900;
+      margin-bottom: 14px;
+      background: rgba(248, 250, 252, 0.98);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 10px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+    }
+
+    .kpi-strip.collapsed {
+      padding: 8px 10px;
+    }
+
+    .kpi-strip.collapsed {
+      padding-bottom: 10px;
+    }
+
+    .kpi-mobile-toggle {
+      display: none;
+      border: 1px solid #d1d5db;
+      background: #ffffff;
+      color: var(--text);
+      font-weight: 700;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+      padding: 7px 11px;
+      border-radius: 999px;
+      position: relative;
+      z-index: 1;
+      white-space: nowrap;
+      flex: 0 0 auto;
+      min-width: 42px;
+    }
+
+    .kpi-mobile-chips {
+      display: none;
+      gap: 8px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      margin-top: 0;
+      padding-bottom: 2px;
+      scrollbar-width: none;
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    .kpi-mobile-chips::-webkit-scrollbar {
+      display: none;
+    }
+
+    .kpi-chip {
+      flex: 0 0 auto;
+      border: 1px solid #e5e7eb;
+      background: #ffffff;
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-size: 0.8rem;
+      line-height: 1;
+      white-space: nowrap;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .kpi-chip:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 16px rgba(15, 23, 42, 0.08);
+    }
+
+    .kpi-chip strong {
+      font-size: 0.82rem;
+      color: var(--text);
+    }
+
+    body.dark-mode .kpi-chip {
+      background: #111827;
+      color: #f8fafc;
+      border-color: #334155;
+      box-shadow: 0 2px 10px rgba(2, 6, 23, 0.32);
+    }
+
+    body.dark-mode .kpi-chip strong {
+      color: #f8fafc;
+    }
+
+    body.dark-mode .kpi-mobile-toggle {
+      background: #111827;
+      color: #f8fafc;
+      border-color: #334155;
+    }
+
+    body.dark-mode .kpi-strip .status-box {
+      color: #f8fafc;
+    }
+
+    .kpi-mobile-toggle .toggle-meta,
+    .kpi-mobile-toggle .toggle-text,
+    .kpi-mobile-toggle .toggle-label,
+    .kpi-mobile-toggle .toggle-value {
+      display: none;
+    }
+
+    .kpi-mobile-toggle .toggle-chevron {
+      font-size: 1rem;
+      transition: transform 0.2s ease;
+    }
+
+    .kpi-strip.collapsed .toggle-chevron {
+      transform: rotate(-90deg);
+    }
+
+    .kpi-strip-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .kpi-strip-inline {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      flex-wrap: nowrap;
+      min-width: 0;
+    }
+
+    .kpi-strip-title {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .kpi-strip .status-box {
+      margin-top: 0;
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+
+    .kpi {
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      border-radius: 16px;
+      padding: 14px;
+      border: 1px solid #e5e7eb;
+      background: linear-gradient(180deg, #ffffff, #f8fafc);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+      position: relative;
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    .kpi::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 4px;
+      background: #0f766e;
+      opacity: 0.25;
+    }
+
+    .kpi.kpi-ok::after { background: #16a34a; opacity: 0.6; }
+    .kpi.kpi-warn::after { background: #eab308; opacity: 0.7; }
+    .kpi.kpi-bad::after { background: #dc2626; opacity: 0.6; }
+
+    .kpi .label {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .kpi .value {
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1.1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: clip;
+    }
+
+    .progress {
+      height: 8px;
+      background: #e5e7eb;
+      border-radius: 6px;
+      margin-top: 8px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: #0f766e;
+      transition: width .2s ease;
+    }
+
+    .status-box {
+      margin-top: 16px;
+      padding: 16px;
+      border-radius: 16px;
+      font-weight: 700;
+      border: 1px solid transparent;
+    }
+
+    .ok {
+      background: #f0fdf4;
+      color: var(--ok);
+      border-color: #bbf7d0;
+    }
+
+    .warn {
+      background: #fefce8;
+      color: var(--warn);
+      border-color: #fde047;
+    }
+
+    .bad {
+      background: #fef2f2;
+      color: var(--bad);
+      border-color: #fca5a5;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 20px;
+    }
+
+    .summary-item {
+      padding: 10px 0;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .summary-item .s-label {
+      display: block;
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+
+    .summary-item .s-value {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .chart-card {
+      background: linear-gradient(180deg, #ffffff, #f8fafc);
+    }
+
+    .compare-block {
+      margin-top: 18px;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      background: #ffffff;
+      padding: 16px;
+    }
+
+    .compare-block h3 {
+      margin: 0 0 14px;
+      font-size: 1rem;
+    }
+
+    .compare-metric {
+      margin-bottom: 16px;
+    }
+
+    .compare-metric:last-child {
+      margin-bottom: 0;
+    }
+
+    .compare-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+
+    .compare-title {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .compare-sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .compare-rows {
+      display: grid;
+      gap: 8px;
+    }
+
+    .compare-row {
+      display: grid;
+      grid-template-columns: 92px 1fr 88px;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .compare-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .compare-label.compare-ok,
+    .compare-value.compare-ok {
+      color: var(--ok);
+    }
+
+    .compare-label.compare-neutral,
+    .compare-value.compare-neutral {
+      color: var(--muted);
+    }
+
+    .compare-label.compare-warn,
+    .compare-value.compare-warn {
+      color: var(--warn);
+    }
+
+    .compare-label.compare-bad,
+    .compare-value.compare-bad {
+      color: var(--bad);
+    }
+
+    .compare-track {
+      height: 12px;
+      background: #e5e7eb;
+      border-radius: 999px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .compare-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      transition: width 0.25s ease;
+    }
+
+    .compare-fill.planned { background: #94a3b8; }
+    .compare-fill.actual { background: #2563eb; }
+    .compare-fill.anticipated { background: #ea580c; }
+
+    .compare-value {
+      text-align: right;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .variance-block {
+      margin-top: 18px;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      background: #ffffff;
+      padding: 16px;
+    }
+
+    .variance-block h3 {
+      margin: 0 0 14px;
+      font-size: 1rem;
+    }
+
+    .variance-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .variance-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      background: #fbfdff;
+      padding: 12px 14px;
+    }
+
+    .variance-card .v-label {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .variance-card .v-value {
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    .variance-card .v-sub {
+      display: block;
+      margin-top: 6px;
+      font-size: 0.76rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .variance-card.v-ok .v-value { color: var(--ok); }
+    .variance-card.v-warn .v-value { color: var(--warn); }
+    .variance-card.v-bad .v-value { color: var(--bad); }
+
+    .risk-block {
+      margin-top: 18px;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      background: #ffffff;
+      padding: 16px;
+    }
+
+    .risk-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .risk-head h3 {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .risk-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 800;
+      font-size: 0.92rem;
+    }
+
+    .risk-badge.risk-low {
+      background: #f0fdf4;
+      color: var(--ok);
+      border-color: #bbf7d0;
+    }
+
+    .risk-badge.risk-medium {
+      background: #fefce8;
+      color: var(--warn);
+      border-color: #fde047;
+    }
+
+    .risk-badge.risk-high {
+      background: #fff7ed;
+      color: #c2410c;
+      border-color: #fdba74;
+    }
+
+    .risk-badge.risk-critical {
+      background: #fef2f2;
+      color: var(--bad);
+      border-color: #fca5a5;
+    }
+
+    .risk-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .risk-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      background: #fbfdff;
+      padding: 12px 14px;
+    }
+
+    .risk-card .r-label {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .risk-card .r-value {
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    .risk-card .r-sub {
+      display: block;
+      margin-top: 6px;
+      font-size: 0.76rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .chart-wrap {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 220px;
+      padding: 18px 10px 8px;
+      border-radius: 16px;
+      background: #fbfdff;
+      border: 1px solid #e5e7eb;
+    }
+
+    .chart-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .bar-shell {
+      width: 100%;
+      max-width: 90px;
+      height: 160px;
+      display: flex;
+      align-items: end;
+      justify-content: center;
+      background: linear-gradient(180deg, #f3f4f6, #e5e7eb);
+      border-radius: 16px 16px 10px 10px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bar {
+      width: 100%;
+      height: 0%;
+      border-radius: 16px 16px 10px 10px;
+      transition: height 0.25s ease;
+    }
+
+    .bar.budget { background: linear-gradient(180deg, #60a5fa, #2563eb); }
+    .bar.cost { background: linear-gradient(180deg, #34d399, #059669); }
+    .bar.hours { background: linear-gradient(180deg, #facc15, #ca8a04); }
+    .bar.bar-ok { background: linear-gradient(180deg, #34d399, #059669); }
+    .bar.bar-warn { background: linear-gradient(180deg, #fde68a, #eab308); }
+    .bar.bar-bad { background: linear-gradient(180deg, #fca5a5, #dc2626); }
+
+    .chart-label {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .chart-value {
+      font-size: 0.98rem;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .trend-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .trend-pill {
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 12px 14px;
+      background: #ffffff;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .trend-pill:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 18px rgba(15, 23, 42, 0.08);
+    }
+
+    .trend-pill .t-label {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .trend-pill .t-value {
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    .history-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .history-panel {
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 16px;
+      background: #ffffff;
+    }
+
+    .history-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .history-actions button {
+      padding: 10px 12px;
+      font-size: 0.88rem;
+      border-radius: 10px;
+    }
+
+    .history-btn {
+      background: #ecfeff;
+      color: #0f766e;
+      border: 1px solid #99f6e4;
+    }
+
+    .history-btn.secondary {
+      background: #f8fafc;
+      color: #475569;
+      border: 1px solid #cbd5e1;
+    }
+
+    .history-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 280px;
+      overflow: auto;
+    }
+
+    .history-item {
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 10px 12px;
+      background: #fbfdff;
+    }
+
+    .history-item .row-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .history-item .row-sub {
+      font-size: 0.84rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .history-item .row-note {
+      margin-top: 8px;
+      font-size: 0.82rem;
+      color: var(--text);
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 8px 10px;
+      line-height: 1.4;
+    }
+
+    .line-chart {
+      height: 280px;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #ffffff, #fbfdff);
+      padding: 12px;
+      position: relative;
+    }
+
+    .line-chart svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .legend {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+      font-size: 0.84rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+
+    .muted-note {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 1200px) {
+      .brand-row { align-items: flex-start; }
+      .form-grid, .summary, .trend-row, .history-grid { grid-template-columns: 1fr; }
+      .dashboard-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .variance-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .risk-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .compact-grid { grid-template-columns: repeat(3, minmax(120px, 1fr)); }
+      .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .chart-wrap { min-height: auto; }
+      .bar-shell { max-width: 100%; height: 130px; }
       .kpi-strip {
         top: calc(var(--hero-offset, 140px) + 8px);
         padding: 8px 10px;
@@ -696,123 +1901,6 @@
 
     @media (max-width: 700px) {
       .hero {
-        margin-left: 0;
-        padding: 10px 12px;
-        top: 6px;
-      }
-      .top-nav {
-        margin-left: 0;
-        margin-top: 8px;
-      }
-      .tool-launcher {
-        width: 44px;
-        height: 44px;
-        flex-basis: 44px;
-      }
-      .tool-pop {
-        left: 12px;
-        top: calc(100% + 8px);
-        width: min(290px, calc(100vw - 28px));
-      }
-      .tool-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-      .brand-lockup {
-        gap: 10px;
-      }
-      .brand-meta h1 {
-        font-size: 0.98rem;
-      }
-      .brand-kicker {
-        font-size: 0.62rem;
-      }
-      .version-badge {
-        font-size: 0.72rem;
-      }
-      .help-fab {
-        right: 14px;
-        bottom: 14px;
-        width: 48px;
-        height: 48px;
-      }
-      .help-panel {
-        width: 100%;
-        max-height: 88vh;
-      }
-      .help-head {
-        padding: 14px 16px;
-      }
-      .help-body {
-        padding: 14px 16px 16px;
-      }
-      .dashboard-kpis { grid-template-columns: 1fr; }
-      .dashboard-table-wrap { overflow: auto; }
-      .dashboard-table { min-width: 760px; }
-      .variance-grid { grid-template-columns: 1fr; }
-      .risk-grid { grid-template-columns: 1fr; }
-      .toolbar {
-        display: block;
-      }
-      .toolbar-group {
-        display: grid;
-        grid-template-columns: repeat(5, minmax(0, 56px));
-        justify-content: start;
-        width: fit-content;
-        max-width: 100%;
-        gap: 8px;
-      }
-      .tool-btn {
-        width: 56px;
-        min-width: 56px;
-        height: 42px;
-        min-height: 42px;
-        padding: 0;
-        flex: 0 0 56px;
-      }
-      .tool-btn .tool-icon {
-        font-size: 0.9rem;
-      }
-      .project-manager {
-        align-items: stretch;
-      }
-      .project-manager select {
-        min-width: 100%;
-        max-width: 100%;
-      }
-      .project-manager .pm-actions {
-        width: 100%;
-        margin-left: 0;
-      }
-      .project-btn {
-        flex: 1 1 auto;
-      }
-      .project-grid { grid-template-columns: 1fr; }
-      .compact-grid,
-      .compact-grid.compact-2 { grid-template-columns: repeat(2, minmax(120px, 1fr)); max-width: 100%; }
-      .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .compare-row { grid-template-columns: 72px 1fr 72px; gap: 8px; }
-      .kpi .value { font-size: 18px; }
-      .kpi { padding: 12px; }
-      .kpi-strip-title { display: none; }
-      .kpi-strip-head {
-        justify-content: space-between;
-        gap: 8px;
-      }
-      .kpi-strip-inline {
-        flex-wrap: wrap;
-        gap: 8px;
-      }
-      .kpi-mobile-toggle {
-        padding: 6px 9px;
-      }
-      .kpi-chip {
-        padding: 6px 9px;
-        font-size: 0.76rem;
-      }
-      .kpi-chip strong {
-        font-size: 0.78rem;
-      }
-    }
         padding: 10px 12px;
         top: 6px;
       }
@@ -904,8 +1992,7 @@
       .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .compare-row { grid-template-columns: 72px 1fr 72px; gap: 8px; }
       .kpi .value { font-size: 18px; }
-      .kpi {
-      transition: transform 0.18s ease, box-shadow 0.18s ease; padding: 12px; }
+      .kpi { padding: 12px; }
       .kpi-strip-title { display: none; }
       .kpi-strip-head {
         justify-content: space-between;
@@ -962,13 +2049,34 @@
 </head>
 <body>
   <div class="wrap">
+    
 
     <section class="hero">
       <div class="brand-row">
         <div class="brand-lockup">
-          
+          <button class="tool-launcher" id="toolLauncherBtn" type="button" aria-label="Open tools">KP</button>
+          <div class="tool-pop" id="toolPop">
+            <div class="tool-pop-head">
+              <div>
+                <div class="tool-pop-title">KimiaPro Tools</div>
+                <p class="tool-pop-sub">Quick actions, export tools, theme, and reset controls.</p>
+              </div>
+              <button class="tool-pop-close" id="toolPopCloseBtn" type="button" aria-label="Close tools">×</button>
+            </div>
+            <div class="tool-grid" role="toolbar" aria-label="Main tools">
+              <button class="tool-btn primary-tool" id="printBtn" title="Print"><span class="tool-icon">🖨</span><span>Print</span></button>
+              <button class="tool-btn" id="downloadReportBtn" title="PDF Report"><span class="tool-icon">⬇</span><span>PDF</span></button>
+              <button class="tool-btn" id="downloadPortfolioReportBtn" title="Portfolio Report"><span class="tool-icon">▦</span><span>Portfolio</span></button>
+              <button class="tool-btn" id="saveJsonBtn" title="Export JSON"><span class="tool-icon">⤴</span><span>Export</span></button>
+              <button class="tool-btn" id="loadJsonBtn" title="Import JSON"><span class="tool-icon">⤵</span><span>Import</span></button>
+              <button class="tool-btn warn-tool" id="resetBtn" title="Clear Form"><span class="tool-icon">✕</span><span>Clear</span></button>
+              <button class="tool-btn" id="darkModeBtn" title="Dark Mode"><span class="tool-icon">◐</span><span>Theme</span></button>
+              <button class="tool-btn" id="openSettingsBtn" title="Settings"><span class="tool-icon">⚙</span><span>Settings</span></button>
+            </div>
+            <input id="jsonFileInput" type="file" accept="application/json" style="display:none;" />
+          </div>
           <div class="brand-meta">
-            <p class="brand-kicker">KimiaPro Tools</p>
+            <p class="brand-kicker">KimiaPro</p>
             <h1>Project KPI Tracker</h1>
           </div>
         </div>
@@ -1166,83 +2274,62 @@
       </section>
 
       <section class="card span-12">
-        <h2>Estimated / Estimate</h2>
-        <div class="form-grid">
-          <div class="field">
-            <label for="forecastHours">Estimated Hours</label>
-            <input id="forecastHours" class="input-manual" type="number" min="0" step="0.1" placeholder="0" />
-          </div>
-          <div class="field">
-            <label for="forecastHourlyRate">Estimated Hourly Rate ($)</label>
-            <input id="forecastHourlyRate" class="input-manual" type="number" min="0" step="0.01" placeholder="0.00" />
-          </div>
-          <div class="field">
-            <label for="forecastLaborCost">Estimated Labor Cost (auto $)</label>
-            <input id="forecastLaborCost" class="input-auto" type="number" min="0" step="0.01" placeholder="0.00" readonly />
-          </div>
-          <div class="field">
-            <label for="forecastOtherCost">Estimated Other Cost ($)</label>
-            <input id="forecastOtherCost" class="input-manual" type="number" min="0" step="0.01" placeholder="0.00" />
-          </div>
-        </div>
-        <div class="trend-row" style="margin-top:16px;">
-          <div class="trend-pill"><span class="t-label">Estimated Total Cost</span><span class="t-value" id="forecastTotalCostText">$0.00</span></div>
-          <div class="trend-pill"><span class="t-label">Estimated Profit</span><span class="t-value" id="forecastProfitText">$0.00</span></div>
-          <div class="trend-pill"><span class="t-label">Estimated Margin</span><span class="t-value" id="forecastMarginText">0.0%</span></div>
-          <div class="trend-pill"><span class="t-label">Estimated vs Actual</span><span class="t-value" id="forecastVsActualText">On target</span></div>
-        </div>
-        <p class="muted-note">Use forecast inputs to estimate expected total cost, profit, and margin before final actuals are known.</p>
-      </section>
-
-      <section class="card span-12">
-        <h2>Anticipated to Complete</h2>
-        <div class="form-grid">
-          <div class="field">
-            <label for="remainingHours">Remaining Hours</label>
-            <input id="remainingHours" class="input-manual" type="number" min="0" step="0.1" placeholder="0" />
-          </div>
-          <div class="field">
-            <label for="remainingCost">Remaining Cost ($)</label>
-            <input id="remainingCost" class="input-manual" type="number" min="0" step="0.01" placeholder="0.00" />
-          </div>
-        </div>
-        <div class="compact-grid" style="margin-top:10px;">
-          <div class="kpi"><div class="label">Anticipated Total Cost</div><div id="anticipatedTotalCostText" class="value">$0.00</div></div>
-          <div class="kpi"><div class="label">Anticipated Profit</div><div id="anticipatedProfitText" class="value">$0.00</div></div>
-          <div class="kpi"><div class="label">Anticipated Margin</div><div id="anticipatedMarginText" class="value">0.0%</div></div>
-          <div class="kpi"><div class="label">Remaining Labor Cost</div><div id="remainingLaborCostText" class="value">$0.00</div></div>
-        </div>
-          <div class="trend-pill"><span class="t-label">Anticipated Margin</span><span class="t-value" id="anticipatedMarginText">0.0%</span></div>
-        </div>
-
         <h2>Actual Costs</h2>
-        <div class="form-grid">
-          <div class="field">
+        <div class="compact-grid">
+          <div class="field compact-field">
             <label for="actualHours">Actual Hours</label>
             <input id="actualHours" class="input-manual" type="number" min="0" step="0.1" placeholder="0" />
           </div>
-          <div class="field">
+          <div class="field compact-field">
             <label for="hourlyRate">Hourly Rate ($)</label>
             <input id="hourlyRate" class="input-manual" type="number" min="0" step="0.01" placeholder="0.00" />
           </div>
-          <div class="field">
+          <div class="field compact-field">
             <label for="laborCostManual">Labor Cost (auto $)</label>
             <input id="laborCostManual" class="input-auto" type="number" min="0" step="0.01" placeholder="0.00" readonly />
           </div>
-          <div class="field">
+          <div class="field compact-field">
             <label for="materialCost">Material Cost ($)</label>
             <input id="materialCost" class="input-manual" type="number" min="0" step="0.01" placeholder="0.00" />
           </div>
-          <div class="field">
+          <div class="field compact-field">
             <label for="travelCost">Travel Cost ($)</label>
             <input id="travelCost" class="input-manual" type="number" min="0" step="0.01" placeholder="0.00" />
           </div>
-          <div class="field">
+          <div class="field compact-field">
             <label for="miscCost">Misc Cost ($)</label>
             <input id="miscCost" class="input-manual" type="number" min="0" step="0.01" placeholder="0.00" />
           </div>
         </div>
         <p class="muted-note">Enter actual hours, hourly rate, and other costs in one place. Labor cost is calculated automatically from Actual Hours × Hourly Rate.</p>
+
+        <h2 style="margin-top:22px;">Anticipated to Complete</h2>
+        <div class="compact-grid">
+          <div class="field compact-field">
+            <label for="remainingHours">Remaining Hours</label>
+            <input id="remainingHours" class="input-manual" type="number" min="0" step="0.1" placeholder="0" />
+          </div>
+          <div class="field compact-field">
+            <label for="remainingCost">Remaining Cost ($)</label>
+            <input id="remainingCost" class="input-manual" type="number" min="0" step="0.01" placeholder="0.00" />
+          </div>
+          <div class="field compact-field">
+            <label for="anticipatedTotalCost">Anticipated Total Cost</label>
+            <input id="anticipatedTotalCost" class="input-auto" type="text" readonly />
+          </div>
+          <div class="field compact-field">
+            <label for="anticipatedProfit">Anticipated Profit</label>
+            <input id="anticipatedProfit" class="input-auto" type="text" readonly />
+          </div>
+          <div class="field compact-field">
+            <label for="anticipatedMargin">Anticipated Margin</label>
+            <input id="anticipatedMargin" class="input-auto" type="text" readonly />
+          </div>
+          <div class="field compact-field">
+            <label for="remainingLaborCost">Remaining Labor Cost</label>
+            <input id="remainingLaborCost" class="input-auto" type="text" readonly />
+          </div>
+        </div>
       </section>
 
       <section class="card span-12 chart-card">
@@ -1310,17 +2397,17 @@
             </div>
             <div class="compare-rows">
               <div class="compare-row">
-                <div class="compare-label">Planned</div>
+                <div class="compare-label" id="cmpHoursPlannedLbl">Planned</div>
                 <div class="compare-track"><div id="cmpHoursPlanned" class="compare-fill planned"></div></div>
                 <div id="cmpHoursPlannedVal" class="compare-value">0.0 h</div>
               </div>
               <div class="compare-row">
-                <div class="compare-label">Actual</div>
+                <div class="compare-label" id="cmpHoursActualLbl">Actual</div>
                 <div class="compare-track"><div id="cmpHoursActual" class="compare-fill actual"></div></div>
                 <div id="cmpHoursActualVal" class="compare-value">0.0 h</div>
               </div>
               <div class="compare-row">
-                <div class="compare-label">Anticipated</div>
+                <div class="compare-label" id="cmpHoursAnticipatedLbl">Anticipated</div>
                 <div class="compare-track"><div id="cmpHoursAnticipated" class="compare-fill anticipated"></div></div>
                 <div id="cmpHoursAnticipatedVal" class="compare-value">0.0 h</div>
               </div>
@@ -1334,17 +2421,17 @@
             </div>
             <div class="compare-rows">
               <div class="compare-row">
-                <div class="compare-label">Planned</div>
+                <div class="compare-label" id="cmpProfitPlannedLbl">Planned</div>
                 <div class="compare-track"><div id="cmpProfitPlanned" class="compare-fill planned"></div></div>
                 <div id="cmpProfitPlannedVal" class="compare-value">$0.00</div>
               </div>
               <div class="compare-row">
-                <div class="compare-label">Actual</div>
+                <div class="compare-label" id="cmpProfitActualLbl">Actual</div>
                 <div class="compare-track"><div id="cmpProfitActual" class="compare-fill actual"></div></div>
                 <div id="cmpProfitActualVal" class="compare-value">$0.00</div>
               </div>
               <div class="compare-row">
-                <div class="compare-label">Anticipated</div>
+                <div class="compare-label" id="cmpProfitAnticipatedLbl">Anticipated</div>
                 <div class="compare-track"><div id="cmpProfitAnticipated" class="compare-fill anticipated"></div></div>
                 <div id="cmpProfitAnticipatedVal" class="compare-value">$0.00</div>
               </div>
@@ -1455,16 +2542,13 @@
 
       <section class="card span-12">
         <h2>Printable Summary</h2>
-        <p class="muted-note">In canvas preview, browser print and pop-up windows may be blocked. Use <strong>PDF Report</strong> to download a print-friendly report file that opens separately and can then be saved as PDF.</p>
+        <p class="muted-note"> Use <strong>PDF Report</strong> to download a print-friendly report file that opens separately and can then be saved as PDF.</p>
         <div class="summary">
           <div class="summary-item"><span class="s-label">Project Name</span><span class="s-value" id="sumProjectName">—</span></div>
           <div class="summary-item"><span class="s-label">Client / Owner</span><span class="s-value" id="sumClient">—</span></div>
           <div class="summary-item"><span class="s-label">Project ID / Quote / PO</span><span class="s-value" id="sumProjectRef">—</span></div>
           <div class="summary-item"><span class="s-label">Currency</span><span class="s-value" id="sumCurrency">CAD</span></div>
           <div class="summary-item"><span class="s-label">Budget</span><span class="s-value" id="sumBudget">$0.00</span></div>
-          <div class="summary-item"><span class="s-label">Estimated Total Cost</span><span class="s-value" id="sumForecastTotalCost">$0.00</span></div>
-          <div class="summary-item"><span class="s-label">Estimated Profit</span><span class="s-value" id="sumForecastProfit">$0.00</span></div>
-          <div class="summary-item"><span class="s-label">Estimated Margin</span><span class="s-value" id="sumForecastMargin">0.0%</span></div>
           <div class="summary-item"><span class="s-label">Estimated Total Cost</span><span class="s-value" id="sumForecastTotalCost">$0.00</span></div>
           <div class="summary-item"><span class="s-label">Estimated Profit</span><span class="s-value" id="sumForecastProfit">$0.00</span></div>
           <div class="summary-item"><span class="s-label">Estimated Margin</span><span class="s-value" id="sumForecastMargin">0.0%</span></div>
@@ -1485,6 +2569,108 @@
     </div>
       </section>
       <button class="help-fab" id="helpFab" type="button" aria-label="Open instructions" title="Instructions">?</button>
+
+    <div class="settings-modal" id="settingsModal" aria-hidden="true">
+      <div class="settings-panel" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+        <div class="settings-head">
+          <div>
+            <h3 id="settingsTitle">Settings</h3>
+          </div>
+          <button class="settings-close" id="settingsCloseBtn" type="button" aria-label="Close settings">×</button>
+        </div>
+        <div class="settings-body">
+          <div class="settings-card">
+            <h4>Report & Branding</h4>
+            <div class="form-grid" style="margin-top:10px;">
+              <div class="field">
+                <label for="settingsCompanyName">Company Name</label>
+                <input id="settingsCompanyName" type="text" placeholder="KimiaPro" />
+              </div>
+              <div class="field">
+                <label for="settingsPreparedBy">Prepared By</label>
+                <input id="settingsPreparedBy" type="text" placeholder="Optional" />
+              </div>
+            </div>
+          </div>
+          <div class="settings-card">
+            <h4>Defaults</h4>
+            <div class="form-grid" style="margin-top:10px;">
+              <div class="field">
+                <label for="settingsDefaultCurrency">Default Currency</label>
+                <select id="settingsDefaultCurrency">
+                  <option value="CAD">CAD</option>
+                  <option value="USD">USD</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="settingsDefaultRate">Default Hourly Rate ($)</label>
+                <input id="settingsDefaultRate" type="number" min="0" step="0.01" placeholder="0.00" />
+              </div>
+            </div>
+          </div>
+          <div class="settings-card">
+            <h4>Status Thresholds</h4>
+            <p>These thresholds apply to overall project status based on Budget Used.</p>
+            <div class="form-grid" style="margin-top:10px;">
+              <div class="field">
+                <label for="settingsWarningPct">Warning Threshold (%)</label>
+                <input id="settingsWarningPct" type="number" min="0" step="0.1" placeholder="80" />
+              </div>
+              <div class="field">
+                <label for="settingsOverPct">Over Budget Threshold (%)</label>
+                <input id="settingsOverPct" type="number" min="0" step="0.1" placeholder="100" />
+              </div>
+            </div>
+          </div>
+          <div class="settings-card">
+            <h4>Risk Thresholds</h4>
+            <p>These thresholds control how project risk is classified from anticipated finish values.</p>
+            <div class="form-grid" style="margin-top:10px;">
+              <div class="field">
+                <label for="settingsRiskMediumMargin">Medium Risk Margin &lt; (%)</label>
+                <input id="settingsRiskMediumMargin" type="number" min="0" step="0.1" placeholder="30" />
+              </div>
+              <div class="field">
+                <label for="settingsRiskHighMargin">High Risk Margin &lt; (%)</label>
+                <input id="settingsRiskHighMargin" type="number" min="0" step="0.1" placeholder="15" />
+              </div>
+              <div class="field">
+                <label for="settingsRiskCriticalMargin">Critical Risk Margin &lt; (%)</label>
+                <input id="settingsRiskCriticalMargin" type="number" min="0" step="0.1" placeholder="5" />
+              </div>
+              <div class="field">
+                <label for="settingsRiskMediumCost">Medium Cost vs Budget &gt; (%)</label>
+                <input id="settingsRiskMediumCost" type="number" min="0" step="0.1" placeholder="90" />
+              </div>
+              <div class="field">
+                <label for="settingsRiskHighCost">High Cost vs Budget &gt; (%)</label>
+                <input id="settingsRiskHighCost" type="number" min="0" step="0.1" placeholder="100" />
+              </div>
+              <div class="field">
+                <label for="settingsRiskCriticalCost">Critical Cost vs Budget &gt; (%)</label>
+                <input id="settingsRiskCriticalCost" type="number" min="0" step="0.1" placeholder="110" />
+              </div>
+              <div class="field">
+                <label for="settingsRiskMediumHours">Medium Hours vs Plan &gt; (%)</label>
+                <input id="settingsRiskMediumHours" type="number" min="0" step="0.1" placeholder="95" />
+              </div>
+              <div class="field">
+                <label for="settingsRiskHighHours">High Hours vs Plan &gt; (%)</label>
+                <input id="settingsRiskHighHours" type="number" min="0" step="0.1" placeholder="105" />
+              </div>
+              <div class="field">
+                <label for="settingsRiskCriticalHours">Critical Hours vs Plan &gt; (%)</label>
+                <input id="settingsRiskCriticalHours" type="number" min="0" step="0.1" placeholder="115" />
+              </div>
+            </div>
+          </div>
+          <div class="history-actions" style="margin-bottom:0;">
+            <button id="saveSettingsBtn" class="history-btn" type="button">Save Settings</button>
+            <button id="resetSettingsBtn" class="history-btn secondary" type="button">Reset Defaults</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="help-modal" id="helpModal" aria-hidden="true">
       <div class="help-panel" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
@@ -1534,6 +2720,24 @@
   </div>
 
   <script>
+    const defaultAppSettings = {
+      companyName: 'KimiaPro',
+      preparedBy: '',
+      defaultCurrency: 'CAD',
+      defaultRate: 0,
+      warningPct: 80,
+      overPct: 100,
+      riskMediumMarginPct: 30,
+      riskHighMarginPct: 15,
+      riskCriticalMarginPct: 5,
+      riskMediumCostPct: 90,
+      riskHighCostPct: 100,
+      riskCriticalCostPct: 110,
+      riskMediumHoursPct: 95,
+      riskHighHoursPct: 105,
+      riskCriticalHoursPct: 115
+    };
+
     const ids = [
       'projectName', 'client', 'budget', 'revenue', 'plannedHours', 'plannedHourlyRate', 'estimatedOtherCost', 'projectRef', 'currencySelect',
       'startDate', 'endDate', 'notes', 'actualHours', 'hourlyRate', 'laborCostManual',
@@ -1564,6 +2768,74 @@
       try { localStorage.setItem('kimiapro-dark-mode', isDark ? '1' : '0'); } catch (err) {}
       syncStickyOffsets();
       renderDashboard();
+    }
+
+    function getAppSettings() {
+      try {
+        return { ...defaultAppSettings, ...(JSON.parse(localStorage.getItem('kimiapro-app-settings') || '{}') || {}) };
+      } catch (err) {
+        return { ...defaultAppSettings };
+      }
+    }
+
+    function saveAppSettings(settings) {
+      try {
+        localStorage.setItem('kimiapro-app-settings', JSON.stringify(settings));
+      } catch (err) {}
+    }
+
+    function fillSettingsForm() {
+      const s = getAppSettings();
+      $('settingsCompanyName').value = s.companyName || '';
+      $('settingsPreparedBy').value = s.preparedBy || '';
+      $('settingsDefaultCurrency').value = s.defaultCurrency || 'CAD';
+      $('settingsDefaultRate').value = s.defaultRate ?? 0;
+      $('settingsWarningPct').value = s.warningPct ?? 80;
+      $('settingsOverPct').value = s.overPct ?? 100;
+      $('settingsRiskMediumMargin').value = s.riskMediumMarginPct ?? 30;
+      $('settingsRiskHighMargin').value = s.riskHighMarginPct ?? 15;
+      $('settingsRiskCriticalMargin').value = s.riskCriticalMarginPct ?? 5;
+      $('settingsRiskMediumCost').value = s.riskMediumCostPct ?? 90;
+      $('settingsRiskHighCost').value = s.riskHighCostPct ?? 100;
+      $('settingsRiskCriticalCost').value = s.riskCriticalCostPct ?? 110;
+      $('settingsRiskMediumHours').value = s.riskMediumHoursPct ?? 95;
+      $('settingsRiskHighHours').value = s.riskHighHoursPct ?? 105;
+      $('settingsRiskCriticalHours').value = s.riskCriticalHoursPct ?? 115;
+    }
+
+    function applyDefaultSettingsToForm(force = false) {
+      const s = getAppSettings();
+      if (force || !$('currencySelect').value) $('currencySelect').value = s.defaultCurrency || 'CAD';
+      if (force || !$('plannedHourlyRate').value) $('plannedHourlyRate').value = s.defaultRate ? String(s.defaultRate) : '';
+      if (force || !$('hourlyRate').value) $('hourlyRate').value = s.defaultRate ? String(s.defaultRate) : '';
+    }
+
+    function applySettingsToCurrentForm() {
+      const s = getAppSettings();
+      $('currencySelect').value = s.defaultCurrency || 'CAD';
+      $('plannedHourlyRate').value = s.defaultRate ? String(s.defaultRate) : '';
+      $('hourlyRate').value = s.defaultRate ? String(s.defaultRate) : '';
+    }
+
+    function isFreshProjectDraft() {
+      const activeProject = getLastActiveProject();
+      if (activeProject) return false;
+      const fieldsToCheck = [
+        'projectName', 'client', 'projectRef', 'budget', 'revenue', 'plannedHours',
+        'actualHours', 'materialCost', 'travelCost', 'miscCost', 'remainingHours', 'remainingCost', 'notes'
+      ];
+      return fieldsToCheck.every((id) => {
+        const el = $(id);
+        return !el || !String(el.value || '').trim();
+      });
+    }
+
+    function setSettingsOpen(isOpen) {
+      const modal = $('settingsModal');
+      if (!modal) return;
+      modal.classList.toggle('open', isOpen);
+      modal.setAttribute('aria-hidden', String(!isOpen));
+      if (isOpen) fillSettingsForm();
     }
 
     function setHelpOpen(isOpen) {
@@ -1613,8 +2885,11 @@
     }
 
     function getStatus(usedPct) {
-      if (usedPct > 100) return { label: 'Over Budget', className: 'bad' };
-      if (usedPct >= 80) return { label: 'Warning', className: 'warn' };
+      const s = getAppSettings();
+      const warningPct = num(s.warningPct) || 80;
+      const overPct = num(s.overPct) || 100;
+      if (usedPct > overPct) return { label: 'Over Budget', className: 'bad' };
+      if (usedPct >= warningPct) return { label: 'Warning', className: 'warn' };
       return { label: 'OK', className: 'ok' };
     }
 
@@ -1643,8 +2918,6 @@
       const budgetUsed = budget > 0 ? (totalCost / budget) * 100 : 0;
       const profit = revenue - totalCost;
       const margin = revenue > 0 ? (profit / revenue) * 100 : 0;
-      const forecastProfit = revenue - forecastTotalCost;
-      const forecastMargin = revenue > 0 ? (forecastProfit / revenue) * 100 : 0;
       const forecastProfit = revenue - forecastTotalCost;
       const forecastMargin = revenue > 0 ? (forecastProfit / revenue) * 100 : 0;
       const anticipatedProfit = revenue - anticipatedTotalCost;
@@ -1689,17 +2962,27 @@
     }
 
     function getRiskFromMetrics(metrics) {
+      const s = getAppSettings();
       const anticipatedCostRatio = metrics.budget > 0 ? (metrics.anticipatedTotalCost / metrics.budget) * 100 : 0;
       const anticipatedHoursRatio = metrics.plannedHours > 0 ? (metrics.anticipatedHours / metrics.plannedHours) * 100 : 0;
+      const mediumMargin = num(s.riskMediumMarginPct) || 30;
+      const highMargin = num(s.riskHighMarginPct) || 15;
+      const criticalMargin = num(s.riskCriticalMarginPct) || 5;
+      const mediumCost = num(s.riskMediumCostPct) || 90;
+      const highCost = num(s.riskHighCostPct) || 100;
+      const criticalCost = num(s.riskCriticalCostPct) || 110;
+      const mediumHours = num(s.riskMediumHoursPct) || 95;
+      const highHours = num(s.riskHighHoursPct) || 105;
+      const criticalHours = num(s.riskCriticalHoursPct) || 115;
       let riskLevel = 'LOW';
       let riskClass = 'risk-low';
-      if (metrics.anticipatedMargin < 5 || anticipatedCostRatio > 110 || anticipatedHoursRatio > 115) {
+      if (metrics.anticipatedMargin < criticalMargin || anticipatedCostRatio > criticalCost || anticipatedHoursRatio > criticalHours) {
         riskLevel = 'CRITICAL';
         riskClass = 'risk-critical';
-      } else if (metrics.anticipatedMargin < 15 || anticipatedCostRatio > 100 || anticipatedHoursRatio > 105 || metrics.budgetUsed > 95) {
+      } else if (metrics.anticipatedMargin < highMargin || anticipatedCostRatio > highCost || anticipatedHoursRatio > highHours || metrics.budgetUsed > 95) {
         riskLevel = 'HIGH';
         riskClass = 'risk-high';
-      } else if (metrics.anticipatedMargin < 30 || anticipatedCostRatio > 90 || anticipatedHoursRatio > 95 || metrics.budgetUsed > 80) {
+      } else if (metrics.anticipatedMargin < mediumMargin || anticipatedCostRatio > mediumCost || anticipatedHoursRatio > mediumHours || metrics.budgetUsed > 80) {
         riskLevel = 'MEDIUM';
         riskClass = 'risk-medium';
       }
@@ -1886,7 +3169,7 @@
     }
 
     function refreshProjectSelect(selectedName = '') {
-      const select = $('projectSelect');
+      const select = $('projectSelect') || $('projectSelectEditor');
       const selectEditor = $('projectSelectEditor');
       if (!select && !selectEditor) return;
       const projects = getSavedProjects();
@@ -1977,6 +3260,7 @@
         if (el.tagName === 'SELECT') el.value = 'CAD';
         else el.value = '';
       });
+      applyDefaultSettingsToForm(true);
       const projectSelect = $('projectSelect');
       const projectSelectEditor = $('projectSelectEditor');
       if (projectSelect) projectSelect.value = '';
@@ -2125,7 +3409,7 @@
       const companyName = appSettings.companyName || 'KimiaPro';
       const preparedBy = appSettings.preparedBy || '—';
       const projects = getSavedProjects();
-      const entries = Object.entries(projects).sort((a, b) => a[0].localeCompare(b[0]));
+      const entries = Object.entries(projects).sort((a, b) => a[0].localeCompare(b));
       const totalBudget = entries.reduce((s, [, r]) => s + calculateMetricsFromData(r.data || {}).budget, 0);
       const totalCost = entries.reduce((s, [, r]) => s + calculateMetricsFromData(r.data || {}).totalCost, 0);
       const avgMargin = entries.length ? entries.reduce((s, [, r]) => s + calculateMetricsFromData(r.data || {}).anticipatedMargin, 0) / entries.length : 0;
@@ -2285,6 +3569,55 @@
           </div>
         `).join('')
         : '<div style="color:#64748b;">No saved history snapshots yet.</div>';
+
+      const compareMaxCost = Math.max(metrics.budget, metrics.totalCost, metrics.anticipatedTotalCost, 1);
+      const compareMaxHours = Math.max(metrics.plannedHours, metrics.actualHours, metrics.anticipatedHours, 1);
+      const compareMaxProfit = Math.max(Math.abs(metrics.plannedProfit), Math.abs(metrics.profit), Math.abs(metrics.anticipatedProfit), 1);
+
+      const compareRow = (label, value, max, kind, text) => `
+        <div class="report-compare-row">
+          <div class="report-compare-label">${label}</div>
+          <div class="report-compare-track"><div class="report-compare-fill ${kind}" style="width:${Math.min((Math.abs(value) / max) * 100, 100)}%"></div></div>
+          <div class="report-compare-value">${text}</div>
+        </div>
+      `;
+
+      const actualCostVariance = metrics.totalCost - metrics.budget;
+      const actualHoursVariance = metrics.actualHours - metrics.plannedHours;
+      const actualProfitVariance = metrics.profit - metrics.plannedProfit;
+      const anticipatedCostVariance = metrics.anticipatedTotalCost - metrics.budget;
+      const anticipatedHoursVariance = metrics.anticipatedHours - metrics.plannedHours;
+      const anticipatedProfitVariance = metrics.anticipatedProfit - metrics.plannedProfit;
+      const varianceState = (value, mode) => {
+        if (mode === 'profit') return value < 0 ? 'bad' : (value === 0 ? 'warn' : 'ok');
+        return value > 0 ? 'bad' : (value === 0 ? 'warn' : 'ok');
+      };
+      const varianceCard = (title, value, sub, mode, formatter) => {
+        const state = varianceState(value, mode);
+        const sign = value > 0 ? '+' : '';
+        return `
+          <div class="report-variance-card ${state}">
+            <span class="rv-label">${title}</span>
+            <span class="rv-value">${sign}${formatter(value)}</span>
+            <span class="rv-sub">${sub}</span>
+          </div>
+        `;
+      };
+
+      const anticipatedCostRatio = metrics.budget > 0 ? (metrics.anticipatedTotalCost / metrics.budget) * 100 : 0;
+      const anticipatedHoursRatio = metrics.plannedHours > 0 ? (metrics.anticipatedHours / metrics.plannedHours) * 100 : 0;
+      let riskLevel = 'LOW';
+      let riskClass = 'risk-low';
+      if (metrics.anticipatedMargin < 5 || anticipatedCostRatio > 110 || anticipatedHoursRatio > 115) {
+        riskLevel = 'CRITICAL';
+        riskClass = 'risk-critical';
+      } else if (metrics.anticipatedMargin < 15 || anticipatedCostRatio > 100 || anticipatedHoursRatio > 105 || metrics.budgetUsed > 95) {
+        riskLevel = 'HIGH';
+        riskClass = 'risk-high';
+      } else if (metrics.anticipatedMargin < 30 || anticipatedCostRatio > 90 || anticipatedHoursRatio > 95 || metrics.budgetUsed > 80) {
+        riskLevel = 'MEDIUM';
+        riskClass = 'risk-medium';
+      }
 
       const historyTrendSection = historySnapshots.length ? (() => {
         const width = 760;
@@ -2457,9 +3790,6 @@
     <div class="item"><span class="label">Estimated Total Cost</span><span class="value">${$('sumForecastTotalCost').textContent}</span></div>
     <div class="item"><span class="label">Estimated Profit</span><span class="value">${$('sumForecastProfit').textContent}</span></div>
     <div class="item"><span class="label">Estimated Margin</span><span class="value">${$('sumForecastMargin').textContent}</span></div>
-    <div class="item"><span class="label">Estimated Total Cost</span><span class="value">${$('sumForecastTotalCost').textContent}</span></div>
-    <div class="item"><span class="label">Estimated Profit</span><span class="value">${$('sumForecastProfit').textContent}</span></div>
-    <div class="item"><span class="label">Estimated Margin</span><span class="value">${$('sumForecastMargin').textContent}</span></div>
     <div class="item"><span class="label">Revenue / Contract Value</span><span class="value">${$('sumRevenue').textContent}</span></div>
     <div class="item"><span class="label">Total Cost</span><span class="value">${$('sumTotalCost').textContent}</span></div>
     <div class="item"><span class="label">Remaining Budget</span><span class="value">${$('sumRemaining').textContent}</span></div>
@@ -2586,7 +3916,7 @@
     
 
   <footer style="margin-top:24px;padding-top:16px;border-top:1px solid #e5e7eb;color:#64748b;font-size:13px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;">
-    <div><strong style="color:#1f2937;">${companyName} Project KPI Report</strong> - professional offline project performance dashboard.</div>
+    <div><strong style="color:#1f2937;">KimiaPro Project KPI Report</strong> - professional offline project performance dashboard.</div>
     <div>Made by <strong style="color:#1f2937;">KimiaPro</strong> - Tools for engineers, managers, and technical professionals</div>
   </footer>
   </div>
@@ -2598,7 +3928,6 @@
       const metrics = currentMetrics();
 
       $('laborCostManual').value = metrics.laborCost ? metrics.laborCost.toFixed(2) : '';
-      $('estimatedOtherCost').value = metrics.forecastOtherCost ? metrics.forecastOtherCost.toFixed(2) : '0.00';
       $('estimatedOtherCost').value = metrics.forecastOtherCost.toFixed(2);
       $('budgetUsedPct').textContent = pct(metrics.budgetUsed);
       $('remainingBudget').textContent = money(metrics.remaining);
@@ -2640,9 +3969,6 @@
       $('sumProjectRef').textContent = $('projectRef').value || '—';
       $('sumCurrency').textContent = currentCurrency();
       $('sumBudget').textContent = money(metrics.budget);
-      $('sumForecastTotalCost').textContent = money(metrics.forecastTotalCost);
-      $('sumForecastProfit').textContent = money(metrics.forecastProfit);
-      $('sumForecastMargin').textContent = pct(metrics.forecastMargin);
       $('sumForecastTotalCost').textContent = money(metrics.forecastTotalCost);
       $('sumForecastProfit').textContent = money(metrics.forecastProfit);
       $('sumForecastMargin').textContent = pct(metrics.forecastMargin);
@@ -2703,15 +4029,6 @@
         else profitChartBar.classList.add('bar-bad');
       }
 
-      $('forecastTotalCostText').textContent = money(metrics.forecastTotalCost);
-      $('forecastProfitText').textContent = money(metrics.forecastProfit);
-      $('forecastMarginText').textContent = pct(metrics.forecastMargin);
-      const forecastDiff = metrics.forecastTotalCost - metrics.totalCost;
-      let forecastVsActual = 'On target';
-      if (forecastDiff > 0) forecastVsActual = `Forecast +${money(Math.abs(forecastDiff))}`;
-      else if (forecastDiff < 0) forecastVsActual = `Forecast -${money(Math.abs(forecastDiff))}`;
-      $('forecastVsActualText').textContent = forecastVsActual;
-
       const compareMaxCost = Math.max(metrics.budget, metrics.totalCost, metrics.anticipatedTotalCost, 1);
       const actualCostVariance = metrics.totalCost - metrics.budget;
       const actualHoursVariance = metrics.actualHours - metrics.plannedHours;
@@ -2757,24 +4074,46 @@
       const compareMaxHours = Math.max(metrics.plannedHours, metrics.actualHours, metrics.anticipatedHours, 1);
       const compareMaxProfit = Math.max(Math.abs(metrics.plannedProfit), Math.abs(metrics.profit), Math.abs(metrics.anticipatedProfit), 1);
 
-      const setCompare = (barId, valId, value, max, formatter) => {
-        const bar = $(barId);
-        const label = $(valId);
-        if (bar) bar.style.width = `${Math.min((Math.abs(value) / max) * 100, 100)}%`;
-        if (label) label.textContent = formatter(value);
+      const ratioStatus = (ratio) => {
+        if (ratio > 1) return 'bad';
+        if (ratio >= 0.8) return 'warn';
+        return 'ok';
       };
 
-      setCompare('cmpCostPlanned', 'cmpCostPlannedVal', metrics.budget, compareMaxCost, money);
-      setCompare('cmpCostActual', 'cmpCostActualVal', metrics.totalCost, compareMaxCost, money);
-      setCompare('cmpCostAnticipated', 'cmpCostAnticipatedVal', metrics.anticipatedTotalCost, compareMaxCost, money);
+      const profitStatus = (value, baseline) => {
+        if (value < 0) return 'bad';
+        if (baseline <= 0) return 'ok';
+        if (value < baseline) return 'warn';
+        return 'ok';
+      };
 
-      setCompare('cmpHoursPlanned', 'cmpHoursPlannedVal', metrics.plannedHours, compareMaxHours, hours);
-      setCompare('cmpHoursActual', 'cmpHoursActualVal', metrics.actualHours, compareMaxHours, hours);
-      setCompare('cmpHoursAnticipated', 'cmpHoursAnticipatedVal', metrics.anticipatedHours, compareMaxHours, hours);
+      const setCompare = (barId, valId, value, max, formatter, labelId, state) => {
+        const bar = $(barId);
+        const label = $(valId);
+        const rowLabel = $(labelId);
+        if (bar) bar.style.width = `${Math.min((Math.abs(value) / max) * 100, 100)}%`;
+        if (label) {
+          label.textContent = formatter(value);
+          label.classList.remove('compare-ok', 'compare-warn', 'compare-bad', 'compare-neutral');
+          if (state) label.classList.add(`compare-${state}`);
+        }
+        if (rowLabel) {
+          rowLabel.classList.remove('compare-ok', 'compare-warn', 'compare-bad', 'compare-neutral');
+          if (state) rowLabel.classList.add(`compare-${state}`);
+        }
+      };
 
-      setCompare('cmpProfitPlanned', 'cmpProfitPlannedVal', metrics.plannedProfit, compareMaxProfit, money);
-      setCompare('cmpProfitActual', 'cmpProfitActualVal', metrics.profit, compareMaxProfit, money);
-      setCompare('cmpProfitAnticipated', 'cmpProfitAnticipatedVal', metrics.anticipatedProfit, compareMaxProfit, money);
+      setCompare('cmpCostPlanned', 'cmpCostPlannedVal', metrics.budget, compareMaxCost, money, 'cmpCostPlannedLbl', 'neutral');
+      setCompare('cmpCostActual', 'cmpCostActualVal', metrics.totalCost, compareMaxCost, money, 'cmpCostActualLbl', ratioStatus(metrics.budget > 0 ? metrics.totalCost / metrics.budget : 0));
+      setCompare('cmpCostAnticipated', 'cmpCostAnticipatedVal', metrics.anticipatedTotalCost, compareMaxCost, money, 'cmpCostAnticipatedLbl', ratioStatus(metrics.budget > 0 ? metrics.anticipatedTotalCost / metrics.budget : 0));
+
+      setCompare('cmpHoursPlanned', 'cmpHoursPlannedVal', metrics.plannedHours, compareMaxHours, hours, 'cmpHoursPlannedLbl', 'neutral');
+      setCompare('cmpHoursActual', 'cmpHoursActualVal', metrics.actualHours, compareMaxHours, hours, 'cmpHoursActualLbl', ratioStatus(metrics.plannedHours > 0 ? metrics.actualHours / metrics.plannedHours : 0));
+      setCompare('cmpHoursAnticipated', 'cmpHoursAnticipatedVal', metrics.anticipatedHours, compareMaxHours, hours, 'cmpHoursAnticipatedLbl', ratioStatus(metrics.plannedHours > 0 ? metrics.anticipatedHours / metrics.plannedHours : 0));
+
+      setCompare('cmpProfitPlanned', 'cmpProfitPlannedVal', metrics.plannedProfit, compareMaxProfit, money, 'cmpProfitPlannedLbl', 'neutral');
+      setCompare('cmpProfitActual', 'cmpProfitActualVal', metrics.profit, compareMaxProfit, money, 'cmpProfitActualLbl', profitStatus(metrics.profit, metrics.plannedProfit));
+      setCompare('cmpProfitAnticipated', 'cmpProfitAnticipatedVal', metrics.anticipatedProfit, compareMaxProfit, money, 'cmpProfitAnticipatedLbl', profitStatus(metrics.anticipatedProfit, metrics.plannedProfit));
 
       $('budgetChartValue').textContent = money(metrics.budget);
       $('costChartValue').textContent = money(metrics.totalCost);
@@ -3125,7 +4464,16 @@
         defaultCurrency: $('settingsDefaultCurrency').value || 'CAD',
         defaultRate: num($('settingsDefaultRate').value),
         warningPct: num($('settingsWarningPct').value) || 80,
-        overPct: num($('settingsOverPct').value) || 100
+        overPct: num($('settingsOverPct').value) || 100,
+        riskMediumMarginPct: num($('settingsRiskMediumMargin').value) || 30,
+        riskHighMarginPct: num($('settingsRiskHighMargin').value) || 15,
+        riskCriticalMarginPct: num($('settingsRiskCriticalMargin').value) || 5,
+        riskMediumCostPct: num($('settingsRiskMediumCost').value) || 90,
+        riskHighCostPct: num($('settingsRiskHighCost').value) || 100,
+        riskCriticalCostPct: num($('settingsRiskCriticalCost').value) || 110,
+        riskMediumHoursPct: num($('settingsRiskMediumHours').value) || 95,
+        riskHighHoursPct: num($('settingsRiskHighHours').value) || 105,
+        riskCriticalHoursPct: num($('settingsRiskCriticalHours').value) || 115
       };
       saveAppSettings(settings);
       if (isFreshProjectDraft()) {
@@ -3141,36 +4489,6 @@
       if (isFreshProjectDraft()) {
         applyDefaultSettingsToForm(true);
       }
-      update();
-      refreshProjectSelect(getLastActiveProject());
-    });
-    $('openSettingsBtn').addEventListener('click', () => {
-      setToolPopOpen(false);
-      setSettingsOpen(true);
-    });
-    $('settingsCloseBtn').addEventListener('click', () => setSettingsOpen(false));
-    $('settingsModal').addEventListener('click', (event) => {
-      if (event.target === $('settingsModal')) setSettingsOpen(false);
-    });
-    $('saveSettingsBtn').addEventListener('click', () => {
-      const settings = {
-        companyName: $('settingsCompanyName').value.trim() || 'KimiaPro',
-        preparedBy: $('settingsPreparedBy').value.trim(),
-        defaultCurrency: $('settingsDefaultCurrency').value || 'CAD',
-        defaultRate: num($('settingsDefaultRate').value),
-        warningPct: num($('settingsWarningPct').value) || 80,
-        overPct: num($('settingsOverPct').value) || 100
-      };
-      saveAppSettings(settings);
-      applyDefaultSettingsToForm(false);
-      update();
-      refreshProjectSelect(getLastActiveProject());
-      setSettingsOpen(false);
-    });
-    $('resetSettingsBtn').addEventListener('click', () => {
-      saveAppSettings({ ...defaultAppSettings });
-      fillSettingsForm();
-      applyDefaultSettingsToForm(true);
       update();
       refreshProjectSelect(getLastActiveProject());
     });
